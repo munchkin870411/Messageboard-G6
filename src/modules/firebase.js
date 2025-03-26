@@ -44,32 +44,15 @@ export async function fetchMessagesFromFirebase() {
   }
 }
 
-// 🟢 Uppdatera likes/dislikes i Firebase
-export async function updateLikeDislikeFirebase(messageId, type) {
-  const messageURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${messageId}.json`;
-
-  try {
-    const response = await fetch(messageURL);
-    const messageData = await response.json();
-
-    if (!messageData) {
-      throw new Error("Message not found");
-    }
-
-    const updatedData = {
-      like: type === "like" ? messageData.like + 1 : messageData.like,
-      dislike:
-        type === "dislike" ? messageData.dislike + 1 : messageData.dislike,
-    };
-
-    await fetch(messageURL, {
-      method: "PATCH",
-      body: JSON.stringify(updatedData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } catch (error) {
-    console.error(`Error updating ${type}:`, error);
-  }
+export function fetchMessagesWithPolling(callback) {
+    setInterval(async () => {
+        try {
+            const response = await fetch(URL);
+            const data = await response.json();
+            const messagesArray = data ? Object.values(data) : [];
+            callback(messagesArray);
+        } catch (error) {
+            console.error("Error fetching messages:", error);
+        }
+    }, 10000);
 }
