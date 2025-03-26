@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Board</title>
 </head>
 <body>
-    
+  <h1>Message Board</h1>
+  <form id="messageForm">
+    <label for="name">Namn:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="message">Meddelande:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br>
+    <button type="submit">Skicka</button>
+  </form>
+  <div id="messages"></div>
 </body>
 </html>
