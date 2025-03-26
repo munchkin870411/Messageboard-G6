@@ -1,7 +1,7 @@
 import { updateLikeDislikeFirebase } from "./firebase.js";
 
 export function displayMessages(messagesArray) {
-  console.log(messagesArray);
+  
 
   const messagesDiv = document.querySelector("#messages");
   messagesDiv.innerHTML = "";
