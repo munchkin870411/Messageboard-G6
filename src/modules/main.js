@@ -1,8 +1,8 @@
-import { addMessageToFirebase, fetchMessagesFromFirebase } from "./firebase.js";
+import { addMessageToFirebase, fetchMessagesWithPolling } from "./firebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 
-fetchMessagesFromFirebase().then(messagesArray => {
+fetchMessagesWithPolling((messagesArray) => {
     displayMessages(messagesArray);
 });
 
@@ -16,8 +16,9 @@ messageForm.addEventListener('submit', async event => {
 
     try {
         await addMessageToFirebase(userMessage, userName, 0, 0);
-        const updatedMessages = await fetchMessagesFromFirebase();
-        displayMessages(updatedMessages);
+        fetchMessagesWithPolling((messagesArray) => {
+            displayMessages(messagesArray);
+        });
 
         event.target.reset();
     } catch (error) {

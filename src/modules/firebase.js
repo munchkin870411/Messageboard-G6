@@ -42,3 +42,16 @@ export async function fetchMessagesFromFirebase() {
     return [];
   }
 }
+
+export function fetchMessagesWithPolling(callback) {
+    setInterval(async () => {
+        try {
+            const response = await fetch(URL);
+            const data = await response.json();
+            const messagesArray = data ? Object.values(data) : [];
+            callback(messagesArray);
+        } catch (error) {
+            console.error("Error fetching messages:", error);
+        }
+    }, 10000);
+}
