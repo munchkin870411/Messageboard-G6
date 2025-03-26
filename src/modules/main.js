@@ -15,7 +15,7 @@ messageForm.addEventListener('submit', async event => {
     const userMessage = censorBadWords(formData.get('message'));
 
     try {
-        await addMessageToFirebase(userMessage, userName);
+        await addMessageToFirebase(userMessage, userName, 0, 0);
         const updatedMessages = await fetchMessagesFromFirebase();
         displayMessages(updatedMessages);
 
