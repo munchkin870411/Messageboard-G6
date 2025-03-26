@@ -7,12 +7,12 @@ fetchMessagesWithPolling((messagesArray) => {
 });
 
 const messageForm = document.querySelector("#messageForm");
-messageForm.addEventListener('submit', async event => {
-    event.preventDefault();
+messageForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const userName = formData.get('name'); 
-    const userMessage = censorBadWords(formData.get('message'));
+  const formData = new FormData(event.target);
+  const userName = formData.get("name");
+  const userMessage = censorBadWords(formData.get("message"));
 
     try {
         await addMessageToFirebase(userMessage, userName, 0, 0);
@@ -20,8 +20,8 @@ messageForm.addEventListener('submit', async event => {
             displayMessages(messagesArray);
         });
 
-        event.target.reset();
-    } catch (error) {
-        console.error("Error adding message:", error);
-    }
+    event.target.reset();
+  } catch (error) {
+    console.error("Error adding message:", error);
+  }
 });
