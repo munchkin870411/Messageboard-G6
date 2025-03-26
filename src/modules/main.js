@@ -1,12 +1,15 @@
 import { censorBadWords } from "./profanity.js";
-import { addMessageToFirebase } from "./firebase.js";
+import { addMessageToFirebase, fetchMessagesFromFirebase } from "./firebase.js";
 
-let badWords = "damn!";
+const messageForm = document.querySelector("#messageForm");
+messageForm.addEventListener('submit', event => {
+    event.preventDefault();
 
-console.log(censorBadWords(badWords));
+  const formData = new FormData(event.target);
+  const userName = formData.get('name'); 
+  const userMessage = formData.get('message');
 
-badWords = censorBadWords(badWords);
+  addMessageToFirebase(userMessage, userName);
 
-const user = "mehdi";
-
-addMessageToFirebase(badWords, user);
+  event.target.reset();
+})
