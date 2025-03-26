@@ -1,3 +1,5 @@
+import { updateLikeDislikeFirebase } from "./firebase.js";
+
 export function displayMessages(messagesArray) {
   console.log(messagesArray);
 
@@ -19,21 +21,21 @@ export function displayMessages(messagesArray) {
     message.textContent = messagesArray[i].message;
 
     likeButton.textContent = "👍 ";
-    likeCount.textContent = "0";
+    likeCount.textContent = messagesArray[i].like || 0;
     likeButton.appendChild(likeCount);
 
     dislikeButton.textContent = "👎 ";
-    dislikeCount.textContent = "0";
+    dislikeCount.textContent = messagesArray[i].dislike || 0;
     dislikeButton.appendChild(dislikeCount);
 
-    likeButton.addEventListener("click", () => {
-      let count = parseInt(likeCount.textContent);
-      likeCount.textContent = count + 1;
+    likeButton.addEventListener("click", async () => {
+      await updateLikeDislikeFirebase(messagesArray[i].id, "like");
+      likeCount.textContent = parseInt(likeCount.textContent) + 1;
     });
 
-    dislikeButton.addEventListener("click", () => {
-      let count = parseInt(dislikeCount.textContent);
-      dislikeCount.textContent = count + 1;
+    dislikeButton.addEventListener("click", async () => {
+      await updateLikeDislikeFirebase(messagesArray[i].id, "dislike");
+      dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
     messageDiv.appendChild(user);
