@@ -1,0 +1,18 @@
+#board {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #f0f0f0;
+    overflow: hidden;
+  }
+  
+  .note {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: url('postit-yellow.png'); /* You can switch this for other colors */
+    background-size: cover;
+    padding: 10px;
+    font-family: 'Patrick Hand', cursive;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  }
