@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messageboard</title>
-    <link rel="stylesheet" href="./css/post-it-design.css" />
+    <!-- <link rel="stylesheet" href="./css/post-it-design.css" /> Linked all CSS to styles.css -->
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="./modules/firebase.js" type="module" defer></script>
     <script src="./modules/display.js" type="module" defer></script>
@@ -14,7 +14,7 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="header-title">Message Board</h1>
+      
       <nav class="nav-class">
         <ul class="ul-class">
           <li class="item-home"><a href="index.html" class="home">Home</a></li>
@@ -26,6 +26,7 @@
           </li>
         </ul>
       </nav>
+      <h1 class="header-title">Message Board</h1>
     </header>
 
     <form id="messageForm">
@@ -37,6 +38,8 @@
       <br />
       <button type="submit">Skicka</button>
     </form>
-    <div id="messages"></div>
+    <br><br>
+    
+    <div id="messages" class="postit"></div>
   </body>
 </html>
