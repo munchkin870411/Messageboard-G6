@@ -13,6 +13,7 @@
     <script src="./modules/main.js" type="module" defer></script>
   </head>
   <body>
+
     <header class="header">
       
       <nav class="nav-class">
@@ -29,6 +30,10 @@
       <h1 class="header-title">Message Board</h1>
     </header>
 
+    <main>
+   
+    
+
     <form id="messageForm">
       <label for="name">Namn:</label>
       <input type="text" id="name" name="name" required />
@@ -40,7 +45,18 @@
     </form>
 
     <br><br>
-    <button id="delete">Delete Toggle</button>
     <div id="messages" class="postit"></div>
+    
+  </main>
+
+
+  <footer>
+    <button id="delete">
+      <img src="../images/eraser.png" alt="Delete" width="64" height="64">
+    </button>
+  </footer>
+  
+  
   </body>
+
 </html>
