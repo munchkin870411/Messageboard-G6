@@ -24,7 +24,6 @@ export async function addMessageToFirebase(message, user) {
   return response.json();
 }
 
-// 🟢 Hämta meddelanden från Firebase
 export async function fetchMessagesFromFirebase() {
   try {
     const response = await fetch(URL);
@@ -89,4 +88,22 @@ export function fetchMessagesWithPolling(callback) {
       console.error("Error fetching messages:", error);
     }
   }, 1000);
+}
+
+export async function deleteMessageFromFirebase(messageId) {
+  const messageURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${messageId}.json`;
+
+  try {
+    const response = await fetch(messageURL, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete message");
+    }
+
+    console.log(`Message with ID ${messageId} deleted successfully.`);
+  } catch (error) {
+    console.error("Error deleting message:", error);
+  }
 }

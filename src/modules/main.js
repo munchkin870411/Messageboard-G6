@@ -25,3 +25,11 @@ messageForm.addEventListener("submit", async (event) => {
     console.error("Error adding message:", error);
   }
 });
+
+// const deleteBtn = document.querySelector('#delete');
+// const deleteMode = false;
+// deleteBtn.addEventListener('click', {
+//     if(deleteMode === true) {
+
+//   }
+// })
