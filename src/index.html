@@ -13,34 +13,70 @@
     <script src="./modules/main.js" type="module" defer></script>
   </head>
   <body>
+
     <header class="header">
-      
       <nav class="nav-class">
         <ul class="ul-class">
-          <li class="item-home"><a href="index.html" class="home">Home</a></li>
-          <li class="item-contact">
-            <a href="contact.html" class="contact">Contact</a>
-          </li>
-          <li class="item-about">
-            <a href="about.html" class="about">About</a>
-          </li>
+          <li><a href="index.html" class="nav-link home">Home</a></li>
+          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="about.html" class="nav-link about">About</a></li>
         </ul>
       </nav>
       <h1 class="header-title">Message Board</h1>
     </header>
+    <main>
+   
+    
+      <form id="messageForm">
+        <div class="form-wrapper">
+          <!-- Left: form fields -->
+          <div class="form-fields">
+            <div class="form-row">
+              <label for="name">NAME:</label>
+              <input class="input" type="text" id="name" name="name" required />
+            </div>
+            <div class="form-row">
+              <label for="message">NOTE:</label>
+              <textarea class="input" id="message" name="message" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Right: color picker -->
+          <div class="form-colors">
+            <div class="color-picker">
+              <button type="button" class="color-circle" style="--color: var(--postit-red);" data-color="red"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-oragne);" data-color="orange"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-yellow);" data-color="yellow"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-soft-yellow);" data-color="soft-yellow"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-green);" data-color="green"></button>
+            </div>
+            <div class="color-picker">
+              <button type="button" class="color-circle" style="--color: var(--postit-grey);" data-color="grey"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-pink);" data-color="pink"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-mauve);" data-color="mauve"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-sky-blue);" data-color="sky-blue"></button>
+              <button type="button" class="color-circle" style="--color: var(--postit-aqua-blue);" data-color="aqua-blue"></button>
+            </div>
+          </div>
+          <input type="hidden" id="noteColor" name="color" value="yellow" />
+          <button id="make-note-button" class="submit-button" type="submit">Make Note!</button>
+        </div>
+      
 
-    <form id="messageForm">
-      <label for="name">Namn:</label>
-      <input type="text" id="name" name="name" required />
-      <br />
-      <label for="message">Meddelande:</label>
-      <textarea id="message" name="message" required></textarea>
-      <br />
-      <button type="submit">Skicka</button>
-    </form>
-
+      </form>
     <br><br>
-    <button id="delete">Delete Toggle</button>
-    <div id="messages" class="postit"></div>
+    <div id="messages"></div>
+    
+  </main>
+
+
+  <footer>
+    <button id="delete">
+      <img src="../images/eraser.png" alt="Delete">
+    </button>
+  </footer>
+  
+  
   </body>
+
 </html>

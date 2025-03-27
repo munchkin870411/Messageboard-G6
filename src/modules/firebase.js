@@ -1,13 +1,14 @@
 const URL =
   "https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
 
-export async function addMessageToFirebase(message, user) {
-  const messageData = {
-    message: message,
-    user: user,
-    like: 0,
-    dislike: 0,
-  };
+  export async function addMessageToFirebase(message, user, color) {
+    const messageData = {
+      message,
+      user,
+      like: 0,
+      dislike: 0,
+      color,
+    };
 
   const response = await fetch(URL, {
     method: "POST",

@@ -1,30 +1,151 @@
 @import url("post-it-design.css");
+@import url("form.css");
+@import url("color-picker.css");
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Reenie+Beanie&display=swap');
+
+
+:root {
+    --postit-sky-blue: #80CAFF;
+    --postit-green: #85E0A3;
+    --postit-yellow: #FBD767;
+    --postit-pink: #FFBDF2;
+    --postit-soft-yellow: #FDF5A3;
+    --postit-aqua-blue: #75D7F0;
+    --postit-mauve: #D9B8FF;
+    --postit-grey: #E6E6E6;
+    --postit-red: #FFAFA3;
+    --postit-oragne: #FFC470;
+    --main-font: 'Reenie Beanie', cursive;
+  }
+
+ html, body {
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+  
+/* header */
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    margin-bottom: 30px;
 }
 
 .ul-class {
-    display: flex;
-    /* gap: clamp(0.5rem, 2vw, 3rem);  */
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 6vw;
 }
 
 .ul-class li {
-    margin-right: 20vw;
+  margin: 0;
 }
 
-.ul-class li:last-child {
-    margin-right: 0;
+/* Make the entire sticky nav item clickable */
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  padding: 20px;
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  color: black;
+  text-decoration: none;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a {
+  font-family: var(--main-font);
+}
+
+/* Individual sticky styles */
+.home {
+  background-color: var(--postit-green);
+  transform: rotate(-4deg);
+}
+
+.contact {
+  background-color: var(--postit-oragne);
+  transform: rotate(3deg);
+}
+
+.about {
+  background-color: var(--postit-sky-blue);
+  transform: rotate(1deg);
+}
+
+/* Optional hover effect */
+.nav-link:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Header title */
+.header-title {
+  margin: 0;
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+}
+
+/* footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: end;
+    left: 0;
+  }
+
+  #delete {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
   }
   
+  #delete img {
+    display: block;
+    width: 64px;
+    height: 64;
+    outline: none;
+    border: none;
+    transition: transform 0.2s ease;
+  }
 
-.header-title {
-    margin: 0;
+  #delete img:hover {
+    transform: scale(1.1) rotate(2deg);
+  }
+
+.message.red         { background-color: var(--postit-red); }
+.message.orange      { background-color: var(--postit-oragne); }
+.message.yellow      { background-color: var(--postit-yellow); }
+.message.soft-yellow { background-color: var(--postit-soft-yellow); }
+.message.green       { background-color: var(--postit-green); }
+.message.grey        { background-color: var(--postit-grey); }
+.message.pink        { background-color: var(--postit-pink); }
+.message.mauve       { background-color: var(--postit-mauve); }
+.message.sky-blue    { background-color: var(--postit-sky-blue); }
+.message.aqua-blue   { background-color: var(--postit-aqua-blue); }
+
+#messages {
+  display: flex;
+  flex-wrap: wrap;
 }
-
