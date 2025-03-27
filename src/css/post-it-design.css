@@ -13,8 +13,8 @@
 
 
 .postit {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     /* background: linear-gradient(to bottom, #f4a89a 10%, #f4a89a 100%); */
     border: none;
     box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);

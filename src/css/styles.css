@@ -1,5 +1,18 @@
 @import url("post-it-design.css");
 
+:root {
+    --postit-sky-blue: #80CAFF;
+    --postit-green: #85E0A3;
+    --postit-yellow: #FBD767;
+    --postit-pink: #FFBDF2;
+    --postit-soft-yellow: #FDF5A3;
+    --postit-aqua-blue: #75D7F0;
+    --postit-mauve: #D9B8FF;
+    --postit-grey: #E6E6E6;
+    --postit-red: #FFAFA3;
+    --postit-oragne: #FFC470;
+  }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,5 +39,16 @@
 
 .header-title {
     margin: 0;
+}
+
+.item-home {
+    background-color: var(--postit-green)
+}
+.item-about {
+    background-color: var(--postit-soft-yellow);
+
+}
+.item-contact {
+    background-color: var(--postit-sky-blue);
 }
 
