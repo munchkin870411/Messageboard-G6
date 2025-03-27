@@ -1,7 +1,6 @@
 @import url("post-it-design.css");
 @import url("form.css");
 @import url("color-picker.css");
-
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Reenie+Beanie&display=swap');
 
 
@@ -42,74 +41,66 @@
 }
 
 .ul-class {
-    display: flex;
-    /* gap: clamp(0.5rem, 2vw, 3rem);  */
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 6vw;
 }
 
 .ul-class li {
-    margin-right: 6vw;
-    font-family: var(--main-font);
-    font-size: 2.5rem;
-    color: black;
-    text-decoration: none;
+  margin: 0;
 }
 
-.ul-class li:last-child {
-    margin-right: 0;
-  }
+/* Make the entire sticky nav item clickable */
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  padding: 20px;
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  color: black;
+  text-decoration: none;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .ul-class li a {
-    text-decoration: none;
-    color: inherit; /* inherits black from the li */
-  }
-  
+a {
+  font-family: var(--main-font);
+}
+
+/* Individual sticky styles */
+.home {
+  background-color: var(--postit-green);
+  transform: rotate(-4deg);
+}
+
+.contact {
+  background-color: var(--postit-oragne);
+  transform: rotate(3deg);
+}
+
+.about {
+  background-color: var(--postit-sky-blue);
+  transform: rotate(1deg);
+}
+
+/* Optional hover effect */
+.nav-link:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Header title */
 .header-title {
-    margin: 0;
-    font-family: var(--main-font);
-    font-size: 2.5rem;
-}
-
-.item-home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--postit-green);
-    transform: rotate(-4deg);
-    font-family: 'Patrick Hand', cursive;
-    padding: 20px;
-    position: relative;
-}
-
-.item-about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--postit-sky-blue);
-    transform: rotate(-2deg);
-    padding: 20px;
-    position: relative;
-
-}
-.item-contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--postit-oragne);
-    transform: rotate(3deg);
-    font-family: 'Patrick Hand', cursive;
-    padding: 20px;
-    position: relative;
-}
-
-.button {
-    width: 150px;
-    height: 50px;
-    border: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 
-    2px 2px 0 rgba(0, 0, 0, 0.05);
+  margin: 0;
+  font-family: var(--main-font);
+  font-size: 2.5rem;
 }
 
 /* footer */
