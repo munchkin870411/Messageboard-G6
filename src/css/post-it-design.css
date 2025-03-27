@@ -1,7 +1,20 @@
+:root {
+  --postit-sky-blue: #80CAFF;
+  --postit-green: #85E0A3;
+  --postit-yellow: #FBD767;
+  --postit-pink: #FFBDF2;
+  --postit-soft-yellow: #FDF5A3;
+  --postit-aqua-blue: #75D7F0;
+  --postit-mauve: #D9B8FF;
+  --postit-grey: #E6E6E6;
+  --postit-red: #FFAFA3;
+  --postit-oragne: #FFC470;
+}
 
 
 
-  .postit {
+
+.postit {
     width: 200px;
     height: 200px;
     background: linear-gradient(to bottom, #f4a89a 10%, #f4a89a 100%);
