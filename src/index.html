@@ -1,18 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messageboard</title>
+    <link rel="stylesheet" href="./css/post-it-design.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./modules/firebase.js" type="module" defer></script>
+    <script src="./modules/display.js" type="module" defer></script>
+    <script src="./modules/profanityList.js" type="module" defer></script>
+    <script src="./modules/profanity.js" type="module" defer></script>
+    <script src="./modules/main.js" type="module" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header-title">Message Board</h1>
+      <nav class="nav-class">
+        <ul class="ul-class">
+          <li class="item-home"><a href="index.html" class="home">Home</a></li>
+          <li class="item-contact">
+            <a href="contact.html" class="contact">Contact</a>
+          </li>
+          <li class="item-about">
+            <a href="about.html" class="about">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-    <script src="main.js" type="module" defer></script>
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
-
-    <div class="postit">
-        test post it
-    </div>
-    
-</body>
+    <form id="messageForm">
+      <label for="name">Namn:</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+      <label for="message">Meddelande:</label>
+      <textarea id="message" name="message" required></textarea>
+      <br />
+      <button type="submit">Skicka</button>
+    </form>
+    <div id="messages"></div>
+  </body>
 </html>
