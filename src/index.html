@@ -33,33 +33,42 @@
     <main>
    
     
-    <form id="messageForm">
-      <div class="form-row">
-      <label for="name">NAME:</label>
-      <input class="input" type="text" id="name" name="name" required />
-    </div>
-      <br />
-      <div class="form-row">
-      <label for="message">NOTE:</label>
-      <textarea class="input" id="message" name="message" required></textarea>
-    </div>
-    <div class="color-picker">
-      <button class="color-circle" style="--color: var(--postit-red);" data-color="red"></button>
-      <button class="color-circle" style="--color: var(--postit-oragne);" data-color="orange"></button>
-      <button class="color-circle" style="--color: var(--postit-yellow);" data-color="yellow"></button>
-      <button class="color-circle" style="--color: var(--postit-soft-yellow);" data-color="soft-yellow"></button>
-      <button class="color-circle" style="--color: var(--postit-green);" data-color="green"></button>
+      <form id="messageForm">
+        <div class="form-wrapper">
+          <!-- Left: form fields -->
+          <div class="form-fields">
+            <div class="form-row">
+              <label for="name">NAME:</label>
+              <input class="input" type="text" id="name" name="name" required />
+            </div>
+            <div class="form-row">
+              <label for="message">NOTE:</label>
+              <textarea class="input" id="message" name="message" required></textarea>
+            </div>
+          </div>
       
-      <button class="color-circle" style="--color: var(--postit-grey);" data-color="grey"></button>
-      <button class="color-circle" style="--color: var(--postit-pink);" data-color="pink"></button>
-      <button class="color-circle" style="--color: var(--postit-mauve);" data-color="mauve"></button>
-      <button class="color-circle" style="--color: var(--postit-sky-blue);" data-color="sky-blue"></button>
-      <button class="color-circle" style="--color: var(--postit-aqua-blue);" data-color="aqua-blue"></button>
-    </div>
-      <br />
-      <button type="submit">Skicka</button>
-    </form>
+          <!-- Right: color picker -->
+          <div class="form-colors">
+            <div class="color-picker">
+              <button class="color-circle" style="--color: var(--postit-red);" data-color="red"></button>
+              <button class="color-circle" style="--color: var(--postit-oragne);" data-color="orange"></button>
+              <button class="color-circle" style="--color: var(--postit-yellow);" data-color="yellow"></button>
+              <button class="color-circle" style="--color: var(--postit-soft-yellow);" data-color="soft-yellow"></button>
+              <button class="color-circle" style="--color: var(--postit-green);" data-color="green"></button>
+            </div>
+            <div class="color-picker">
+              <button class="color-circle" style="--color: var(--postit-grey);" data-color="grey"></button>
+              <button class="color-circle" style="--color: var(--postit-pink);" data-color="pink"></button>
+              <button class="color-circle" style="--color: var(--postit-mauve);" data-color="mauve"></button>
+              <button class="color-circle" style="--color: var(--postit-sky-blue);" data-color="sky-blue"></button>
+              <button class="color-circle" style="--color: var(--postit-aqua-blue);" data-color="aqua-blue"></button>
+            </div>
+          </div>
+          <button type="submit">Skicka</button>
+        </div>
+      
 
+      </form>
     <br><br>
     <div id="messages" class="postit"></div>
     

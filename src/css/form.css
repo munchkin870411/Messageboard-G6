@@ -27,3 +27,18 @@
     margin-bottom: 1rem;      /* spacing between fields */
     
   }
+
+  
+  .form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  
+    .form-fields {
+        flex: 1;
+      }
+  

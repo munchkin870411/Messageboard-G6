@@ -121,3 +121,17 @@ footer {
     text-align: end;
     left: 0;
   }
+
+  #delete {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  #delete img {
+    display: block;
+    outline: none;
+    border: none;
+  }
