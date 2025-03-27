@@ -1,12 +1,24 @@
 import { updateLikeDislikeFirebase } from "./firebase.js";
 
+function getRotationFromId(id) {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return (hash % 5) - 2; // Gives -5 to +4 degrees
+}
+
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
   messagesDiv.innerHTML = "";
 
   for (let i = 0; i < messagesArray.length; i++) {
     const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message");
+messageDiv.classList.add("message", "postit");
+
+const rotation = getRotationFromId(messagesArray[i].id);
+messageDiv.style.transform = `rotate(${rotation}deg)`;
+
 if (messagesArray[i].color) {
   messageDiv.classList.add(messagesArray[i].color);
 }
