@@ -133,3 +133,14 @@ footer {
   #delete img:hover {
     transform: scale(1.1) rotate(2deg);
   }
+
+  .message.red         { background-color: var(--postit-red); }
+.message.orange      { background-color: var(--postit-oragne); }
+.message.yellow      { background-color: var(--postit-yellow); }
+.message.soft-yellow { background-color: var(--postit-soft-yellow); }
+.message.green       { background-color: var(--postit-green); }
+.message.grey        { background-color: var(--postit-grey); }
+.message.pink        { background-color: var(--postit-pink); }
+.message.mauve       { background-color: var(--postit-mauve); }
+.message.sky-blue    { background-color: var(--postit-sky-blue); }
+.message.aqua-blue   { background-color: var(--postit-aqua-blue); }
