@@ -132,6 +132,13 @@ footer {
   
   #delete img {
     display: block;
+    width: 64px;
+    height: 64;
     outline: none;
     border: none;
+    transition: transform 0.2s ease;
+  }
+
+  #delete img:hover {
+    transform: scale(1.1) rotate(2deg);
   }

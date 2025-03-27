@@ -1,3 +1,17 @@
+:root {
+  --postit-sky-blue: #80CAFF;
+  --postit-green: #85E0A3;
+  --postit-yellow: #FBD767;
+  --postit-pink: #FFBDF2;
+  --postit-soft-yellow: #FDF5A3;
+  --postit-aqua-blue: #75D7F0;
+  --postit-mauve: #D9B8FF;
+  --postit-grey: #E6E6E6;
+  --postit-red: #FFAFA3;
+  --postit-oragne: #FFC470;
+  --main-font: 'Reenie Beanie', cursive;
+}
+
 .form-row {
     display: flex;
     align-items: center;
@@ -14,7 +28,7 @@
 .input {
     background-color: rgb(223, 222, 222);
     width: 100%;              /* full width of container */
-    max-width: 400px;         /* optional: limit width */
+    max-width: 600px;         /* optional: limit width */
     height: 30px;             /* consistent height */
     background-color: #e0e0e0; /* light grey */
     border: none;             /* remove default border */
@@ -33,12 +47,42 @@
     display: flex;
     justify-content: space-between;
     gap: 2rem;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
   }
 
   
-    .form-fields {
+.form-fields {
         flex: 1;
+        margin-top: 25px;
       }
+
+      
+
+.submit-button {
+  cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border: none;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(4deg);
+    font-family: 'Patrick Hand', cursive;
+    color: #333;
+    position: relative;
+    background-color: var(--postit-red);
+    transition: transform 0.2s ease;
+    font-family: var(--main-font);
+    font-size: 2.8rem;
+  }
+
+  .submit-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .make-note-button {
+    font-family: var(--main-font);
+  }
   
