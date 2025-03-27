@@ -1,0 +1,29 @@
+.form-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-row label {
+    min-width: 100px;       /* makes labels line up */
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+  }
+
+.input {
+    background-color: rgb(223, 222, 222);
+    width: 100%;              /* full width of container */
+    max-width: 400px;         /* optional: limit width */
+    height: 30px;             /* consistent height */
+    background-color: #e0e0e0; /* light grey */
+    border: none;             /* remove default border */
+    outline: none;            /* remove blue focus ring */
+    padding: 8px 12px;        /* space inside */
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;             /* stops textarea from being resized */
+    box-sizing: border-box;   /* makes width include padding */       /* optional: slight rounding */
+    margin-bottom: 1rem;      /* spacing between fields */
+    
+  }
