@@ -144,3 +144,8 @@ footer {
 .message.mauve       { background-color: var(--postit-mauve); }
 .message.sky-blue    { background-color: var(--postit-sky-blue); }
 .message.aqua-blue   { background-color: var(--postit-aqua-blue); }
+
+#messages {
+  display: flex;
+  flex-wrap: wrap;
+}
