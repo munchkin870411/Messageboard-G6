@@ -1,8 +1,6 @@
 import { updateLikeDislikeFirebase } from "./firebase.js";
 
 export function displayMessages(messagesArray) {
-  
-
   const messagesDiv = document.querySelector("#messages");
   messagesDiv.innerHTML = "";
 
@@ -38,11 +36,7 @@ export function displayMessages(messagesArray) {
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
-    messageDiv.appendChild(user);
-    messageDiv.appendChild(message);
-    messageDiv.appendChild(likeButton);
-    messageDiv.appendChild(dislikeButton);
-
-    messagesDiv.appendChild(messageDiv);
+    messageDiv.append(user, message, likeButton, dislikeButton);
+    messagesDiv.append(messageDiv);
   }
 }
