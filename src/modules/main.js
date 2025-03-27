@@ -39,10 +39,3 @@ messageForm.addEventListener("submit", async (event) => {
   }
 });
 
-// const deleteBtn = document.querySelector('#delete');
-// const deleteMode = false;
-// deleteBtn.addEventListener('click', {
-//     if(deleteMode === true) {
-
-//   }
-// })

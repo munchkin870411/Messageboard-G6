@@ -14,14 +14,15 @@ export function displayMessages(messagesArray) {
 
   for (let i = 0; i < messagesArray.length; i++) {
     const messageDiv = document.createElement("div");
-messageDiv.classList.add("message", "postit");
+    messageDiv.classList.add("message", "postit");
+    messageDiv.id = messagesArray[i].id;
 
-const rotation = getRotationFromId(messagesArray[i].id);
-messageDiv.style.transform = `rotate(${rotation}deg)`;
+    const rotation = getRotationFromId(messagesArray[i].id);
+    messageDiv.style.transform = `rotate(${rotation}deg)`;
 
-if (messagesArray[i].color) {
-  messageDiv.classList.add(messagesArray[i].color);
-}
+    if (messagesArray[i].color) {
+      messageDiv.classList.add(messagesArray[i].color);
+    }
 
     const user = document.createElement("h6");
     const message = document.createElement("h4");

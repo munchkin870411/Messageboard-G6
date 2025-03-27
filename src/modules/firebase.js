@@ -1,14 +1,13 @@
-const URL =
-  "https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
+const URL = "https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
 
-  export async function addMessageToFirebase(message, user, color) {
-    const messageData = {
-      message,
-      user,
-      like: 0,
-      dislike: 0,
-      color,
-    };
+export async function addMessageToFirebase(message, user, color) {
+  const messageData = {
+    message,
+    user,
+    like: 0,
+    dislike: 0,
+    color,
+  };
 
   const response = await fetch(URL, {
     method: "POST",
@@ -80,31 +79,14 @@ export function fetchMessagesWithPolling(callback) {
       const data = await response.json();
       const messagesArray = data
         ? Object.keys(data).map((key) => ({
-            id: key,
-            ...data[key],
-          }))
+          id: key,
+          ...data[key],
+        }))
         : [];
       callback(messagesArray);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
-  }, 1000);
+  }, 10000);
 }
 
-export async function deleteMessageFromFirebase(messageId) {
-  const messageURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${messageId}.json`;
-
-  try {
-    const response = await fetch(messageURL, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to delete message");
-    }
-
-    console.log(`Message with ID ${messageId} deleted successfully.`);
-  } catch (error) {
-    console.error("Error deleting message:", error);
-  }
-}
