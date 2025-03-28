@@ -12,8 +12,17 @@
 }
 
 
+.postit h6,
+.postit h4 {
+  margin: 30px 8px 0; /* or adjust as needed */
+  font-size: 2rem;
+}
+
+
 .postit {
   flex: 0 0 220px;
+  position: relative;
+  z-index: 0;
   width: 220px;
   height: 220px;
   border: none;
@@ -21,11 +30,33 @@
   transform: rotate(-2deg);
   font-family: var(--main-font);
   padding: 20px;
+  padding-top: 0;
   font-size: 1.5rem;
   color: #333;
   position: relative;
   background-color: var(--postit-aqua-blue);
   margin: 20px;
+}
+.postit h6,
+.postit h4 {
+  text-align: center;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 10px;
+}
+
+.postit button {
+  position: absolute;
+  bottom: 10px;
+  /* adjust as needed */
+}
+
+.postit button:first-of-type {
+  right: 40px; /* like button */
+}
+
+.postit button:last-of-type {
+  right: 10px; /* dislike button */
 }
 
 .postit::before {
@@ -37,4 +68,43 @@
   width: 100%;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
+  z-index: -1; /* important */
+}
+
+
+
+.postit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/paper-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply; /* Or try overlay, soft-light, etc */
+  opacity: 0.15; /* Optional: adjust texture intensity */
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .postit {
+    flex: 0 0 70vw;
+    width: 70vw;
+    height: 70vw; /* Makes it a square */
+    margin: 10px auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .postit h6,
+  .postit h4 {
+    font-size: 6rem;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .postit button {
+    font-size: 1.5rem;
+    bottom: 10px;
+  }
 }

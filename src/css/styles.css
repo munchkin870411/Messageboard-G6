@@ -24,6 +24,7 @@
     box-sizing: border-box; 
   }
 
+  
 
 
   
@@ -69,11 +70,28 @@
   color: black;
   text-decoration: none;
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
+  position: relative; /* <-- important */
   cursor: pointer;
   transform: rotate(0deg);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* optional: keeps gloss from spilling out */
+  z-index: 1;
 }
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
 
 
 button, a {
@@ -181,4 +199,81 @@ footer .copyright {
 #messages {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* Default desktop styles */
+.nav-class .ul-class {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 6vw;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  font-size: 2.5rem;
+  color: black;
+  text-decoration: none;
+  padding: 20px;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Mobile styles */
+.mobile-header {
+  display: none; /* Hidden by default */
+}
+
+.hamburger {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: white;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  gap: 10px;
+  padding: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-items: center; /* Centers the items horizontally */
+  text-align: center; /* Ensures text inside the items is centered */
+}
+
+.mobile-nav li {
+  list-style: none;
+  padding-right: 30px;
+}
+
+.mobile-header.active .mobile-nav {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: block;
+  }
+
+  .nav-class .ul-class {
+    display: none; /* Hide default menu on mobile */
+  }
 }

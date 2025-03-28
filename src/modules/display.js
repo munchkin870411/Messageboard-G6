@@ -27,11 +27,13 @@ export function displayMessages(messagesArray) {
     const user = document.createElement("h6");
     const message = document.createElement("h4");
     const likeButton = document.createElement("button");
+    likeButton.classList.add("like-button");
     const dislikeButton = document.createElement("button");
+    dislikeButton.classList.add("dislike-button");
     const likeCount = document.createElement("span");
     const dislikeCount = document.createElement("span");
 
-    user.textContent = `User: ${messagesArray[i].user}`;
+    user.textContent = `${messagesArray[i].user}:`;
     message.textContent = messagesArray[i].message;
 
     likeButton.textContent = "👍 ";

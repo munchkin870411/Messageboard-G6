@@ -25,3 +25,14 @@
   .color-circle:focus {
     outline: 2px solid black;
   }
+
+  @media (max-width: 768px) {
+    .color-picker {
+      justify-content: center;
+    }
+  
+    .color-circle {
+      width: 80px;
+      height: 80px;
+    }
+  }
