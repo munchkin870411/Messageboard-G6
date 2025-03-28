@@ -3,37 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <title>Contact</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
   </head>
   <body>
+
+    
     <header class="header">
-      <h1 class="header-title">Contact us</h1>
+      
       <nav class="nav-class">
         <ul class="ul-class">
-          <li class="item-home"><a href="index.html" class="home">Home</a></li>
-          <li class="item-contact">
-            <a href="contact.html" class="contact">Contact</a>
-          </li>
-          <li class="item-about">
+          <li class="nav-link home"><a href="index.html" class="home">Home</a></li>
+        
+          <li class="nav-link about">
             <a href="about.html" class="about">About</a>
           </li>
         </ul>
       </nav>
+      <h1 class="header-title">post-IT</h1>
     </header>
-    <main>
-      <p>Fyll i formuläret nedan för att kontakta oss:</p>
+
+    <main class="contact-main">
+      <div class="contact-postit">
+      <h1>Contact Us:</h1>
+      <br>
       <form id="contactForm">
-        <label for="name">Namn:</label>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" required />
         <br />
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
         <br />
-        <label for="message">Meddelande:</label>
+        <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
         <br />
-        <button type="submit">Skicka</button>
+        <button class="send-button" type="submit">Send!</button>
       </form>
+    </div>
     </main>
-    <footer></footer>
+    <footer>
+      <p class="copyright">© 2025 post-IT team. All rights reserved.</p>
+    </footer>
   </body>
 </html>
