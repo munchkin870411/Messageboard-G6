@@ -34,10 +34,15 @@ messageForm.addEventListener("submit", async (event) => {
   const userMessage = censorBadWords(formData.get("message"));
   const selectedColor = formData.get("color") || "yellow";
 
+  var audio = new Audio('../audio/pop-feature.mp3');
+  audio.play();
+
   try {
     await addMessageToFirebase(userMessage, userName, selectedColor);
     fetchMessagesWithPolling((messagesArray) => {
       displayMessages(messagesArray);
+
+
     });
 
     event.target.reset();
