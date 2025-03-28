@@ -1,4 +1,4 @@
-import { addMessageToFirebase, fetchMessagesWithPolling } from "./firebase.js";
+import { addMessageToFirebase, fetchMessagesWithPolling, fetchMessagesFromFirebase } from "./firebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 
@@ -34,6 +34,20 @@ messageForm.addEventListener("submit", async (event) => {
   const userMessage = censorBadWords(formData.get("message"));
   const selectedColor = formData.get("color") || "yellow";
 
+  try {
+
+  const messagesArray = await fetchMessagesFromFirebase();
+    
+  // Const for checking if the username exists and is banned
+  const existingUser = messagesArray.find(msg => msg.user === userName);
+
+  // I have added so that if the chosen username is banned the user won't be able to add any messages
+  if (existingUser && existingUser.banned) {
+    alert("This username is banned, try again.");
+    return;
+  }
+  
+
   var audio = new Audio('../audio/pop-feature.mp3');
   audio.play();
 
@@ -50,5 +64,9 @@ messageForm.addEventListener("submit", async (event) => {
   } catch (error) {
     console.error("Error adding message:", error);
   }
+}
+ catch (error) {
+  console.error("Error adding message:", error);
+}
 });
 

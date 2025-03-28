@@ -7,6 +7,7 @@ export async function addMessageToFirebase(message, user, color) {
     like: 0,
     dislike: 0,
     color,
+    banned:false,
   };
 
   const response = await fetch(URL, {
@@ -90,3 +91,31 @@ export function fetchMessagesWithPolling(callback) {
   }, 10000);
 }
 
+//function for banning members
+export async function patchBanned(id, banned) {
+  console.log("Patching user:", id, "Banned:", banned);
+
+  const url = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${id}.json`;
+  const options = {
+      method: 'PATCH',
+      body: JSON.stringify({ banned }), 
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  };
+
+  try {
+      const res = await fetch(url, options);
+
+      if (!res.ok) {
+          throw new Error(`Failed to patch user: ${res.status} ${res.statusText}`);
+      }
+
+      const data = await res.json();
+      console.log("Successfully updated banned status:", data);
+      return data; 
+  } catch (error) {
+      console.error("Error patching banned status:", error);
+      return null; 
+  }
+}

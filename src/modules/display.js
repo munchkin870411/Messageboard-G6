@@ -1,4 +1,4 @@
-import { updateLikeDislikeFirebase } from "./firebase.js";
+import { updateLikeDislikeFirebase, patchBanned, fetchMessagesFromFirebase } from "./firebase.js";
 
 function getRotationFromId(id) {
   let hash = 0;
@@ -56,5 +56,36 @@ export function displayMessages(messagesArray) {
 
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
+
+// Kimiya's feature - I have added an event listener so you get the option to ban a username when clicking on their name
+// The styling of the button is a bit odd but maybe you can fix it it in the css file - I have given the button the className "ban-button" 
+    user.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const firebaseID = messagesArray[i].id;
+
+      document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
+
+       if (!user.querySelector(".ban-button")) {
+        const banButton = document.createElement("button");
+        banButton.className = "ban-button";
+        banButton.innerText = "Ban";
+        messageDiv.append(banButton);
+
+        banButton.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const confirmBan = confirm("Do you want to ban this user?");
+          if (confirmBan) {
+            await patchBanned(firebaseID, true); 
+            const users = fetchMessagesFromFirebase();
+            displayMessages(users); 
+          }
+          else {
+              const users = fetchMessagesFromFirebase();
+            displayMessages(users); 
+            }
+        });
+      }
+    });
   }
-}
+  }
