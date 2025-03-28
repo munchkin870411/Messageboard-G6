@@ -45,6 +45,20 @@
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
+    z-index: -1;
+  }
+
+  .about-postit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/paper-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply; /* Or try overlay, soft-light, etc */
+    opacity: 0.15; /* Optional: adjust texture intensity */
+    z-index: -1;
+    pointer-events: none;
   }
 
   .about-postit p {
@@ -86,6 +100,20 @@
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
+    z-index: -1;
+  }
+
+  .contact-postit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/paper-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply; /* Or try overlay, soft-light, etc */
+    opacity: 0.15; /* Optional: adjust texture intensity */
+    z-index: -1;
+    pointer-events: none;
   }
 
   #contactForm{
