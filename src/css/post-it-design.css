@@ -86,3 +86,25 @@
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .postit {
+    flex: 0 0 70vw;
+    width: 70vw;
+    height: 70vw; /* Makes it a square */
+    margin: 10px auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .postit h6,
+  .postit h4 {
+    font-size: 6rem;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .postit button {
+    font-size: 1.5rem;
+    bottom: 10px;
+  }
+}

@@ -104,5 +104,48 @@
   .make-note-button {
     font-family: var(--main-font);
   }
+
+  @media (max-width: 768px) {
+    .form-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .form-fields,
+    .form-colors,
+    .form-submit {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .color-picker {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    .submit-button {
+      margin-top: 1rem;
+      width: 30vw;
+    height: 30vw;
+    }
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+  
+    .header-title {
+      align-self: flex-start;
+      margin-left: 20px;
+      font-size: 2rem;
+      text-align: left;
+    }
+  
+    .nav-class {
+      width: 100%;
+    }
+  }
+  
   
   

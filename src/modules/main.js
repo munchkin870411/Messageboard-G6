@@ -18,6 +18,14 @@ colorButtons.forEach((button) => {
   });
 });
 
+// JavaScript to toggle the mobile menu
+const hamburger = document.querySelector('.hamburger');
+const mobileHeader = document.querySelector('.mobile-header');
+
+hamburger.addEventListener('click', () => {
+  mobileHeader.classList.toggle('active');
+});
+
 messageForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 

@@ -24,12 +24,27 @@
       </nav>
       <h1 class="header-title">post-IT</h1>
     </header>
+    
+    <!-- Mobile Header (Hidden by default) -->
+    <header class="mobile-header">
+      <button class="hamburger" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <nav class="mobile-nav">
+        <ul class="mobile-ul">
+          <li><a href="index.html" class="nav-link home">Home</a></li>
+          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="about.html" class="nav-link about">About</a></li>
+        </ul>
+      </nav>
+    </header>
     <main>
    
     
       <form id="messageForm">
         <div class="form-wrapper">
-          <!-- Left: form fields -->
+          
+          <!-- 🟨 Form Fields -->
           <div class="form-fields">
             <div class="form-row">
               <label for="name">NAME:</label>
@@ -41,7 +56,7 @@
             </div>
           </div>
       
-          <!-- Right: color picker -->
+          <!-- 🎨 Color Picker -->
           <div class="form-colors">
             <div class="color-picker">
               <button type="button" class="color-circle" style="--color: var(--postit-red);" data-color="red"></button>
@@ -58,11 +73,14 @@
               <button type="button" class="color-circle" style="--color: var(--postit-aqua-blue);" data-color="aqua-blue"></button>
             </div>
           </div>
-          <input type="hidden" id="noteColor" name="color" value="yellow" />
-          <button id="make-note-button" class="submit-button" type="submit">Make Note!</button>
-        </div>
       
-
+          <!-- 📝 Submit Button -->
+          <div class="form-submit">
+            <input type="hidden" id="noteColor" name="color" value="yellow" />
+            <button id="make-note-button" class="submit-button" type="submit">Make Note!</button>
+          </div>
+          
+        </div>
       </form>
     <br><br>
     <div id="messages"></div>
