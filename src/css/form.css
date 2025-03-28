@@ -28,8 +28,8 @@
 .input {
     background-color: rgb(223, 222, 222);
     width: 100%;              /* full width of container */
-    max-width: 600px;         /* optional: limit width */
-    height: 30px;             /* consistent height */
+    max-width: 100%;         /* optional: limit width */
+    height: 25px;             /* consistent height */
     background-color: #e0e0e0; /* light grey */
     border: none;             /* remove default border */
     outline: none;            /* remove blue focus ring */
@@ -39,7 +39,10 @@
     resize: none;             /* stops textarea from being resized */
     box-sizing: border-box;   /* makes width include padding */       /* optional: slight rounding */
     margin-bottom: 1rem;      /* spacing between fields */
-    
+  }
+
+  #name {
+    margin-bottom: 25px;
   }
 
   
@@ -54,7 +57,7 @@
   
 .form-fields {
         flex: 1;
-        margin-top: 25px;
+        margin-top: 35px;
       }
 
       

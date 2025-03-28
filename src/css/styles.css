@@ -21,8 +21,25 @@
  html, body {
     margin: 0;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box; 
   }
+
+  body {
+    background: url('/images/whiteBoardBackground.png') repeat;
+    background-size: cover; 
+  }
+  
+  
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.977); /* white overlay with 20% opacity */
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  
 
   *,
 *::before,
@@ -71,8 +88,26 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-a {
+/* a {
   font-family: var(--main-font);
+} */
+
+button, a {
+  text-decoration: none;
+  outline: none;
+  border: none;
+  color: black;
+  background: none;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+a:focus,
+a:active,
+button:focus,
+button:active {
+  outline: none;
+  text-decoration: none;
 }
 
 /* Individual sticky styles */
@@ -100,7 +135,7 @@ a {
 .header-title {
   margin: 0;
   font-family: var(--main-font);
-  font-size: 2.5rem;
+  font-size: 2.2rem;
 }
 
 /* footer */
