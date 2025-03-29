@@ -60,7 +60,7 @@ export async function updateLikeDislikeFirebase(messageId, type) {
 
 export async function addBannedUsersToFirebase(user) {
     const bannedUsersRef = ref(db, "bannedUsers");
-    const newBannedUsersRef = await push(bannedUsersRef, user);
+    const newBannedUsersRef = await push(bannedUsersRef, { user });
     return { id: newBannedUsersRef.key, user };
 }
 
