@@ -2,7 +2,7 @@ import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFireb
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 
-fetchMessagesFromFirebase().then((messagesArray) => {
+listenForMessageChanges((messagesArray) => {
   displayMessages(messagesArray);
 });
 
@@ -10,7 +10,6 @@ const messageForm = document.querySelector("#messageForm");
 const colorButtons = document.querySelectorAll(".color-circle");
 const colorInput = document.querySelector("#noteColor");
 
-// Handle color selection
 colorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const selectedColor = button.dataset.color;
@@ -18,7 +17,6 @@ colorButtons.forEach((button) => {
   });
 });
 
-// JavaScript to toggle the mobile menu
 const hamburger = document.querySelector('.hamburger');
 const mobileHeader = document.querySelector('.mobile-header');
 
@@ -35,35 +33,22 @@ messageForm.addEventListener("submit", async (event) => {
   const selectedColor = formData.get("color") || "yellow";
 
   try {
-
-  const messagesArray = await fetchMessagesFromFirebase();
+    const messagesArray = await fetchMessagesFromFirebase();
     
-  // Const for checking if the username exists and is banned
-  const existingUser = messagesArray.find(msg => msg.user === userName);
+    const existingUser = messagesArray.find(msg => msg.user === userName);
+    if (existingUser && existingUser.banned) {
+      alert("This username is banned, try again.");
+      return;
+    }
+    
+    const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
+    audio.play();
 
-  // I have added so that if the chosen username is banned the user won't be able to add any messages
-  if (existingUser && existingUser.banned) {
-    alert("This username is banned, try again.");
-    return;
-  }
-  
-  const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
-  audio.play();
-
-  try {
     await addMessageToFirebase(userMessage, userName, selectedColor);
-    fetchMessagesFromFirebase((messagesArray) => {
-      displayMessages(messagesArray);
-    });
-
+    
     event.target.reset();
     colorInput.value = "yellow";
   } catch (error) {
     console.error("Error adding message:", error);
   }
-}
- catch (error) {
-  console.error("Error adding message:", error);
-}
 });
-

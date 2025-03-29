@@ -1,8 +1,6 @@
-// Import necessary functions from Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, get, update, remove, onValue } from "firebase/database";
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBkhDaFysGKdVS5xq5MQUMy0sgFImUbz_o",
     authDomain: "messageboard-g6.firebaseapp.com",
@@ -13,11 +11,9 @@ const firebaseConfig = {
     appId: "1:189203259901:web:dafe90dd08ad6150d87994"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Function to add a message
 export async function addMessageToFirebase(message, user, color) {
     const messageData = {
         message,
@@ -33,7 +29,6 @@ export async function addMessageToFirebase(message, user, color) {
     return { id: newMessageRef.key, ...messageData };
 }
 
-// Function to fetch messages
 export async function fetchMessagesFromFirebase() {
     const messagesRef = ref(db, "messages");
     const snapshot = await get(messagesRef);
@@ -46,7 +41,6 @@ export async function fetchMessagesFromFirebase() {
     return Object.keys(data).map((key) => ({ id: key, ...data[key] }));
 }
 
-// Function to update likes/dislikes
 export async function updateLikeDislikeFirebase(messageId, type) {
     const messageRef = ref(db, `messages/${messageId}`);
     const snapshot = await get(messageRef);
@@ -64,7 +58,6 @@ export async function updateLikeDislikeFirebase(messageId, type) {
     await update(messageRef, updatedData);
 }
 
-// Function to update banned status
 export async function patchBanned(id, banned) {
     console.log("Patching user:", id, "Banned:", banned);
 
@@ -75,7 +68,6 @@ export async function patchBanned(id, banned) {
     return { id, banned };
 }
 
-// Function to delete a message
 export async function deleteMessageFromFirebase(messageId) {
     try {
         const messageRef = ref(db, `messages/${messageId}`);
@@ -86,11 +78,9 @@ export async function deleteMessageFromFirebase(messageId) {
     }
 }
 
-// Function to listen for real-time changes
 export function listenForMessageChanges(callback) {
     const messagesRef = ref(db, "messages");
 
-    // Attach the listener
     onValue(messagesRef, (snapshot) => {
         if (!snapshot.exists()) {
             callback([]);
@@ -100,7 +90,6 @@ export function listenForMessageChanges(callback) {
         const data = snapshot.val();
         const messages = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
 
-        // Call the provided callback with the updated messages
         callback(messages);
     });
 }

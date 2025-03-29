@@ -2,7 +2,7 @@ import {
   updateLikeDislikeFirebase,
   patchBanned,
   fetchMessagesFromFirebase,
-} from "./firebase.js";
+} from "./newFirebase.js";
 
 function getRotationFromId(id) {
   let hash = 0;
