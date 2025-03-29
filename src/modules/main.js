@@ -1,14 +1,14 @@
-import { addMessageToFirebase, fetchMessagesWithPolling, fetchMessagesFromFirebase } from "./firebase.js";
+import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges } from "./newFirebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 
-fetchMessagesWithPolling((messagesArray) => {
-    displayMessages(messagesArray);
+fetchMessagesFromFirebase().then((messagesArray) => {
+  displayMessages(messagesArray);
 });
 
 const messageForm = document.querySelector("#messageForm");
 const colorButtons = document.querySelectorAll(".color-circle");
-const colorInput = document.getElementById("noteColor");
+const colorInput = document.querySelector("#noteColor");
 
 // Handle color selection
 colorButtons.forEach((button) => {
@@ -47,16 +47,13 @@ messageForm.addEventListener("submit", async (event) => {
     return;
   }
   
-
-  var audio = new Audio('../audio/pop-feature.mp3');
+  const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
   audio.play();
 
   try {
     await addMessageToFirebase(userMessage, userName, selectedColor);
-    fetchMessagesWithPolling((messagesArray) => {
+    fetchMessagesFromFirebase((messagesArray) => {
       displayMessages(messagesArray);
-
-
     });
 
     event.target.reset();
