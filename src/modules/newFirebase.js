@@ -58,13 +58,15 @@ export async function updateLikeDislikeFirebase(messageId, type) {
     await update(messageRef, updatedData);
 }
 
-export async function patchBanned(id, banned) {
-    console.log("Patching user:", id, "Banned:", banned);
+export async function addBannedUsersToFirebase(user) {
+    const bannedUsersRef = ref(db, "bannedUsers");
+    const newBannedUsersRef = await push(bannedUsersRef, user);
+    return { id: newBannedUsersRef.key, user };
+}
 
+export async function patchBanned(id, banned) {
     const messageRef = ref(db, `messages/${id}`);
     await update(messageRef, { banned });
-
-    console.log("Successfully updated banned status");
     return { id, banned };
 }
 
