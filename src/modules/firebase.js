@@ -1,4 +1,5 @@
-const URL = "https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
+const URL =
+  "https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
 
 export async function addMessageToFirebase(message, user, color) {
   const messageData = {
@@ -7,7 +8,7 @@ export async function addMessageToFirebase(message, user, color) {
     like: 0,
     dislike: 0,
     color,
-    banned:false,
+    banned: false,
   };
 
   const response = await fetch(URL, {
@@ -80,9 +81,9 @@ export function fetchMessagesWithPolling(callback) {
       const data = await response.json();
       const messagesArray = data
         ? Object.keys(data).map((key) => ({
-          id: key,
-          ...data[key],
-        }))
+            id: key,
+            ...data[key],
+          }))
         : [];
       callback(messagesArray);
     } catch (error) {
@@ -97,25 +98,25 @@ export async function patchBanned(id, banned) {
 
   const url = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${id}.json`;
   const options = {
-      method: 'PATCH',
-      body: JSON.stringify({ banned }), 
-      headers: {
-          'Content-Type': 'application/json'
-      }
+    method: "PATCH",
+    body: JSON.stringify({ banned }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 
   try {
-      const res = await fetch(url, options);
+    const res = await fetch(url, options);
 
-      if (!res.ok) {
-          throw new Error(`Failed to patch user: ${res.status} ${res.statusText}`);
-      }
+    if (!res.ok) {
+      throw new Error(`Failed to patch user: ${res.status} ${res.statusText}`);
+    }
 
-      const data = await res.json();
-      console.log("Successfully updated banned status:", data);
-      return data; 
+    const data = await res.json();
+    console.log("Successfully updated banned status:", data);
+    return data;
   } catch (error) {
-      console.error("Error patching banned status:", error);
-      return null; 
+    console.error("Error patching banned status:", error);
+    return null;
   }
 }
