@@ -1,4 +1,8 @@
-import { updateLikeDislikeFirebase, patchBanned, fetchMessagesFromFirebase } from "./firebase.js";
+import {
+  updateLikeDislikeFirebase,
+  patchBanned,
+  fetchMessagesFromFirebase,
+} from "./firebase.js";
 
 function getRotationFromId(id) {
   let hash = 0;
@@ -57,8 +61,8 @@ export function displayMessages(messagesArray) {
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-// Kimiya's feature - I have added an event listener so you get the option to ban a username when clicking on their name
-// The styling of the button is a bit odd but maybe you can fix it it in the css file - I have given the button the className "ban-button" 
+    // Kimiya's feature - I have added an event listener so you get the option to ban a username when clicking on their name
+    // The styling of the button is a bit odd but maybe you can fix it it in the css file - I have given the button the className "ban-button"
     user.addEventListener("click", async (event) => {
       event.preventDefault();
 
@@ -66,7 +70,7 @@ export function displayMessages(messagesArray) {
 
       document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
 
-       if (!user.querySelector(".ban-button")) {
+      if (!user.querySelector(".ban-button")) {
         const banButton = document.createElement("button");
         banButton.className = "ban-button";
         banButton.innerText = "Ban";
@@ -76,16 +80,38 @@ export function displayMessages(messagesArray) {
           event.preventDefault();
           const confirmBan = confirm("Do you want to ban this user?");
           if (confirmBan) {
-            await patchBanned(firebaseID, true); 
+            await patchBanned(firebaseID, true);
             const users = fetchMessagesFromFirebase();
-            displayMessages(users); 
+            displayMessages(users);
+          } else {
+            const users = fetchMessagesFromFirebase();
+            displayMessages(users);
           }
-          else {
-              const users = fetchMessagesFromFirebase();
-            displayMessages(users); 
-            }
         });
       }
     });
   }
+}
+
+document.getElementById("resetButton").addEventListener("click", async () => {
+  const confirmation = confirm("Are you sure you want to reset all messages?");
+  if (confirmation) {
+    try {
+      // Hämta alla meddelanden från Firebase
+      const messages = await fetchMessagesFromFirebase();
+      const deletePromises = messages.map((message) => {
+        const messageURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${message.id}.json`;
+        return fetch(messageURL, { method: "DELETE" });
+      });
+
+      // Vänta tills alla meddelanden är borttagna
+      await Promise.all(deletePromises);
+      console.log("All messages deleted.");
+
+      // Uppdatera UI:t
+      displayMessages([]); // Töm meddelandelistan i UI:t
+    } catch (error) {
+      console.error("Error resetting messages:", error);
+    }
   }
+});
