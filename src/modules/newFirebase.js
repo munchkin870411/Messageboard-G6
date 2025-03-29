@@ -64,6 +64,18 @@ export async function addBannedUsersToFirebase(user) {
     return { id: newBannedUsersRef.key, user };
 }
 
+export async function fetchBannedUsersFromFirebase() {
+    const bannedUsersRef = ref(db, "bannedUsers");
+    const snapshot = await get(bannedUsersRef);
+
+    if (!snapshot.exists()) {
+        return [];
+    }
+
+    const data = snapshot.val();
+    return Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+}
+
 export async function patchBanned(id, banned) {
     const messageRef = ref(db, `messages/${id}`);
     await update(messageRef, { banned });
