@@ -257,6 +257,7 @@ footer .copyright {
   border-radius: 5px;
   align-items: center; /* Centers the items horizontally */
   text-align: center; /* Ensures text inside the items is centered */
+  z-index: 2000;
 }
 
 .mobile-nav li {
@@ -271,6 +272,10 @@ footer .copyright {
 @media (max-width: 768px) {
   .mobile-header {
     display: block;
+  }
+
+  .header {
+    padding: 0rem;
   }
 
   .nav-class .ul-class {

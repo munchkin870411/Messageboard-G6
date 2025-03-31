@@ -1,3 +1,5 @@
+
+
 :root {
     --postit-sky-blue: #80CAFF;
     --postit-green: #85E0A3;
@@ -93,6 +95,49 @@
       }
   }
 
+  .mobile-header {
+  display: none; /* Initially hidden */
+}
+
+.hamburger {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.mobile-nav {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  background: white;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  gap: 10px;
+  padding: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-items: center;
+  text-align: center;
+}
+
+.mobile-header.active .mobile-nav {
+  display: flex; /* Show the mobile menu when 'active' class is added */
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: block; /* Make hamburger visible */
+  }
+
+  .nav-class .ul-class {
+    display: none; /* Hide default menu */
+  }
+}
   
 
   .contact-main {
