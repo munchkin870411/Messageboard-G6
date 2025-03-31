@@ -14,18 +14,25 @@ function getRotationFromId(id) {
 
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
-  messagesDiv.innerHTML = "";
+  const existingMessageIds = new Set(
+    [...messagesDiv.children].map((msg) => msg.id)
+  );
 
   for (let i = 0; i < messagesArray.length; i++) {
+    const messageData = messagesArray[i];
+
+    
+    if (existingMessageIds.has(messageData.id)) continue;
+
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "postit");
-    messageDiv.id = messagesArray[i].id;
+    messageDiv.id = messageData.id;
 
-    const rotation = getRotationFromId(messagesArray[i].id);
+    const rotation = getRotationFromId(messageData.id);
     messageDiv.style.transform = `rotate(${rotation}deg)`;
 
-    if (messagesArray[i].color) {
-      messageDiv.classList.add(messagesArray[i].color);
+    if (messageData.color) {
+      messageDiv.classList.add(messageData.color);
     }
 
     const user = document.createElement("h6");
@@ -37,61 +44,42 @@ export function displayMessages(messagesArray) {
     const likeCount = document.createElement("span");
     const dislikeCount = document.createElement("span");
 
-    user.textContent = `${messagesArray[i].user}:`;
-    message.textContent = messagesArray[i].message;
+    user.textContent = `${messageData.user}:`;
+    message.textContent = messageData.message;
 
     likeButton.textContent = "👍 ";
-    likeCount.textContent = messagesArray[i].like || 0;
+    likeCount.textContent = messageData.like || 0;
     likeButton.appendChild(likeCount);
 
     dislikeButton.textContent = "👎 ";
-    dislikeCount.textContent = messagesArray[i].dislike || 0;
+    dislikeCount.textContent = messageData.dislike || 0;
     dislikeButton.appendChild(dislikeCount);
 
     likeButton.addEventListener("click", async () => {
-      await updateLikeDislikeFirebase(messagesArray[i].id, "like");
+      await updateLikeDislikeFirebase(messageData.id, "like");
       likeCount.textContent = parseInt(likeCount.textContent) + 1;
     });
 
     dislikeButton.addEventListener("click", async () => {
-      await updateLikeDislikeFirebase(messagesArray[i].id, "dislike");
+      await updateLikeDislikeFirebase(messageData.id, "dislike");
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-    // Kimiya's feature - I have added an event listener so you get the option to ban a username when clicking on their name
-    // The styling of the button is a bit odd but maybe you can fix it it in the css file - I have given the button the className "ban-button"
-    user.addEventListener("click", async (event) => {
-      event.preventDefault();
-
-      const firebaseID = messagesArray[i].id;
-
-      document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
-
-      if (!user.querySelector(".ban-button")) {
-        const banButton = document.createElement("button");
-        banButton.className = "ban-button";
-        banButton.innerText = "Ban";
-        messageDiv.append(banButton);
-
-        banButton.addEventListener("click", async (event) => {
-          event.preventDefault();
-          const confirmBan = confirm("Do you want to ban this user?");
-          if (confirmBan) {
-            await patchBanned(firebaseID, true);
-            const users = fetchMessagesFromFirebase();
-            displayMessages(users);
-          } else {
-            const users = fetchMessagesFromFirebase();
-            displayMessages(users);
-          }
-        });
-      }
+   
+    anime({
+      targets: messageDiv,
+      opacity: [0, 1],
+      rotate: [-360, 0], 
+      scale: [0.5, 1], 
+      duration: 2000,    
+      easing: "easeOutElastic(1, .6)",
     });
   }
 }
+
 
 document.getElementById("resetButton").addEventListener("click", async () => {
   const confirmation = confirm("Are you sure you want to reset all messages?");
