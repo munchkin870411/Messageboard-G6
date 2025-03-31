@@ -1,151 +1,154 @@
 :root {
-  --postit-sky-blue: #80CAFF;
-  --postit-green: #85E0A3;
-  --postit-yellow: #FBD767;
-  --postit-pink: #FFBDF2;
-  --postit-soft-yellow: #FDF5A3;
-  --postit-aqua-blue: #75D7F0;
-  --postit-mauve: #D9B8FF;
-  --postit-grey: #E6E6E6;
-  --postit-red: #FFAFA3;
-  --postit-oragne: #FFC470;
-  --main-font: 'Reenie Beanie', cursive;
+  --postit-sky-blue: #80caff;
+  --postit-green: #85e0a3;
+  --postit-yellow: #fbd767;
+  --postit-pink: #ffbdf2;
+  --postit-soft-yellow: #fdf5a3;
+  --postit-aqua-blue: #75d7f0;
+  --postit-mauve: #d9b8ff;
+  --postit-grey: #e6e6e6;
+  --postit-red: #ffafa3;
+  --postit-oragne: #ffc470;
+  --main-font: "Reenie Beanie", cursive;
 }
 
 .form-row {
-    display: flex;
-    align-items: center;
-  }
-  
-  .form-row label {
-    min-width: 100px;       /* makes labels line up */
-    height: 30px;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-  }
+  display: flex;
+  align-items: center;
+}
 
-.input {
-    background-color: rgb(223, 222, 222);
-    width: 100%;              /* full width of container */
-    max-width: 100%;         /* optional: limit width */
-    height: 25px;             /* consistent height */
-    background-color: #e0e0e0; /* light grey */
-    border: none;             /* remove default border */
-    outline: none;            /* remove blue focus ring */
-    padding: 8px 12px;        /* space inside */
-    font-family: inherit;
-    font-size: 1rem;
-    resize: none;             /* stops textarea from being resized */
-    box-sizing: border-box;   /* makes width include padding */       /* optional: slight rounding */
-    margin-bottom: 1rem;      /* spacing between fields */
-  }
+.search-container label,
+.form-row label {
+  min-width: 100px; /* makes labels line up */
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
 
-  #name {
-    margin-bottom: 25px;
-  }
+.input,
+.search-input {
+  background-color: rgb(223, 222, 222);
+  width: 100%; /* full width of container */
+  max-width: 100%; /* optional: limit width */
+  height: 25px; /* consistent height */
+  background-color: #e0e0e0; /* light grey */
+  border: none; /* remove default border */
+  outline: none; /* remove blue focus ring */
+  padding: 8px 12px; /* space inside */
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none; /* stops textarea from being resized */
+  box-sizing: border-box; /* makes width include padding */ /* optional: slight rounding */
+  margin-bottom: 1rem; /* spacing between fields */
+}
 
-  
-  .form-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+#name {
+  margin-bottom: 25px;
+}
 
-  
+.form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .form-fields {
-        flex: 1;
-        margin-top: 35px;
-      }
-
-      
+  flex: 1;
+  margin-top: 35px;
+}
 
 .submit-button {
   cursor: pointer;
   position: relative; /* Required for ::before to position properly */
   overflow: hidden;
-    width: 100px;
-    height: 100px;
-    border: none;
-    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
-    
-    transform: rotate(4deg);
-    font-family: 'Patrick Hand', cursive;
-    color: #333;
-    position: relative;
-    background-color: var(--postit-red);
-    transition: transform 0.2s ease;
-    font-family: var(--main-font);
-    font-size: 2.8rem;
+  width: 100px;
+  height: 100px;
+  border: none;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+
+  transform: rotate(4deg);
+  font-family: "Patrick Hand", cursive;
+  color: #333;
+  position: relative;
+  background-color: var(--postit-red);
+  transition: transform 0.2s ease;
+  font-family: var(--main-font);
+  font-size: 2.8rem;
+}
+
+.submit-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
+  pointer-events: none; /* Ensures it doesn't block clicks */
+  z-index: -1;
+}
+
+.submit-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.make-note-button {
+  font-family: var(--main-font);
+}
+
+/* style for search (Linns feature) */
+
+.search-container {
+  display: flex;
+  margin: 20px 0;
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .form-wrapper {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .submit-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25%;
+  .form-fields,
+  .form-colors,
+  .form-submit {
     width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.05);
-    pointer-events: none; /* Ensures it doesn't block clicks */
-    z-index: -1;
+    text-align: center;
   }
 
-  .submit-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    transform: scale(1.1) rotate(2deg);
-    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  .color-picker {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .make-note-button {
-    font-family: var(--main-font);
-  }
-
-  @media (max-width: 768px) {
-    .form-wrapper {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .form-fields,
-    .form-colors,
-    .form-submit {
-      width: 100%;
-      text-align: center;
-    }
-  
-    .color-picker {
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  
-    .submit-button {
-      margin-top: 1rem;
-      width: 30vw;
+  .submit-button {
+    margin-top: 1rem;
+    width: 30vw;
     height: 30vw;
-    }
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 10px;
-    }
-  
-    .header-title {
-      align-self: flex-start;
-      margin-left: 20px;
-      font-size: 2rem;
-      text-align: left;
-    }
-  
-    .nav-class {
-      width: 100%;
-    }
   }
-  
-  
-  
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .header-title {
+    align-self: flex-start;
+    margin-left: 20px;
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .nav-class {
+    width: 100%;
+  }
+}
