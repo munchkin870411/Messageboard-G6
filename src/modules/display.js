@@ -14,7 +14,7 @@ function getRotationFromId(id) {
 
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
-  
+
   const existingMessageIds = new Set(
     [...messagesDiv.children].map((msg) => msg.id)
   );
@@ -69,9 +69,9 @@ export function displayMessages(messagesArray) {
     anime({
       targets: messageDiv,
       opacity: [0, 1],
-      rotate: [-360, 0], 
-      scale: [0.5, 1],   
-      duration: 2000,    
+      rotate: [-360, 0],
+      scale: [0.5, 1],
+      duration: 2000,
       easing: "easeOutElastic(1, .6)",
     });
 
@@ -102,7 +102,6 @@ export function displayMessages(messagesArray) {
   }
 }
 
-
 document.getElementById("resetButton").addEventListener("click", async () => {
   const confirmation = confirm("Are you sure you want to reset all messages?");
   if (confirmation) {
@@ -126,5 +125,20 @@ document.getElementById("resetButton").addEventListener("click", async () => {
   }
 });
 
+const darkModeToggle = document.getElementById("darkModeToggle");
 
+// Vid sidladdning: Sätt dark mode om det var aktiverat senast
+if (localStorage.getItem("darkMode") === "enabled") {
+  document.body.classList.add("dark-mode");
+}
 
+darkModeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Spara inställningen
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("darkMode", "enabled");
+  } else {
+    localStorage.setItem("darkMode", "disabled");
+  }
+});
