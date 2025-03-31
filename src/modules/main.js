@@ -18,6 +18,8 @@ function filterAndDisplayMessages(searchTerm = "") {
 }
 
 // Initialize message listener
+console.log("main.js loaded");
+
 listenForMessageChanges((messagesArray) => {
   allMessages = messagesArray;
   filterAndDisplayMessages(
@@ -39,13 +41,31 @@ colorButtons.forEach((button) => {
   });
 });
 
-const hamburger = document.querySelector(".hamburger");
-const mobileHeader = document.querySelector(".mobile-header");
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const mobileHeader = document.querySelector(".mobile-header");
+  const mobileNav = document.querySelector(".mobile-nav");
 
-hamburger.addEventListener("click", () => {
-  mobileHeader.classList.toggle("active");
+  // Log to check if elements are selected
+  console.log(hamburger, mobileNav);
+
+  // Toggle the 'active' class on hamburger click to open/close the menu
+  hamburger.addEventListener("click", () => {
+    mobileHeader.classList.toggle("active");
+    mobileNav.classList.toggle("active");
+  });
+
+  // Close the menu if the user clicks anywhere outside of it
+  document.addEventListener("click", (event) => {
+    if (
+      !mobileHeader.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      mobileNav.classList.remove("active");
+      mobileHeader.classList.remove("active");
+    }
+  });
 });
-
 messageForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
