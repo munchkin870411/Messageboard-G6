@@ -17,7 +17,7 @@
     align-items: center;
   }
   
-.form-row,
+.form-row label,
 .search-container label {
   min-width: 100px;       /* makes labels line up */
   height: 30px;
