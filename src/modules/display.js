@@ -15,6 +15,14 @@ function getRotationFromId(id) {
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
 
+  const filteredMessageIds = new Set(messagesArray.map((msg) => msg.id));
+
+  [...messagesDiv.children].forEach((child) => {
+    if (!filteredMessageIds.has(child.id)) {
+      child.remove();
+    }
+  });
+
   const existingMessageIds = new Set(
     [...messagesDiv.children].map((msg) => msg.id)
   );

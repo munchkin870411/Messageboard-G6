@@ -1,27 +1,13 @@
 import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges } from "./newFirebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
-import { initializeSearch, filterMessages } from "./search.js";
-
-// Store all messages globally
-let allMessages = [];
-
-// Function to filter and display messages
-function filterAndDisplayMessages(searchTerm = "") {
-  const filteredMessages = filterMessages(allMessages, searchTerm);
-  displayMessages(filteredMessages);
-}
-
-// Initialize search functionality
-initializeSearch(filterAndDisplayMessages);
+import { initializeSearch, updateMessages } from "./search.js";
 
 console.log("main.js loaded");
 
+// Listen for Firebase changes and update the search module
 listenForMessageChanges((messagesArray) => {
-  allMessages = messagesArray;
-  filterAndDisplayMessages(
-    document.getElementById("searchInput")?.value.toLowerCase() || ""
-  );
+  updateMessages(messagesArray);
 });
 
 const messageForm = document.querySelector("#messageForm");
@@ -39,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.hamburger');
   const mobileHeader = document.querySelector('.mobile-header');
   const mobileNav = document.querySelector('.mobile-nav');
+  initializeSearch(displayMessages);
+
 
   // Log to check if elements are selected
   console.log(hamburger, mobileNav); 

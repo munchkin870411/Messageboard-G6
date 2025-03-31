@@ -1,24 +1,24 @@
 /**
  * Search module for filtering messages by username and content (Linns feature)
  */
-
+let allMessages = [];
 let searchCallback = null;
 
 export function initializeSearch(filterCallback) {
   searchCallback = filterCallback;
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupSearchListener);
-  } else {
-    setupSearchListener();
-  }
-}
-
-function setupSearchListener() {
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.addEventListener("input", handleSearchInput);
   }
+}
+
+export function updateMessages(messagesArray) {
+  allMessages = messagesArray;
+
+  const searchInput = document.getElementById("searchInput");
+  const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
+  performSearch(searchTerm);
 }
 
 function handleSearchInput(event) {
@@ -27,8 +27,10 @@ function handleSearchInput(event) {
 }
 
 export function performSearch(searchTerm = "") {
+  const filteredMessages = filterMessages(allMessages, searchTerm);
+
   if (searchCallback) {
-    searchCallback(searchTerm);
+    searchCallback(filteredMessages);
   }
 }
 
