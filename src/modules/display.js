@@ -14,25 +14,23 @@ function getRotationFromId(id) {
 
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
+  
   const existingMessageIds = new Set(
     [...messagesDiv.children].map((msg) => msg.id)
   );
 
   for (let i = 0; i < messagesArray.length; i++) {
-    const messageData = messagesArray[i];
-
-    
-    if (existingMessageIds.has(messageData.id)) continue;
+    if (existingMessageIds.has(messagesArray[i].id)) continue;
 
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "postit");
-    messageDiv.id = messageData.id;
+    messageDiv.id = messagesArray[i].id;
 
-    const rotation = getRotationFromId(messageData.id);
+    const rotation = getRotationFromId(messagesArray[i].id);
     messageDiv.style.transform = `rotate(${rotation}deg)`;
 
-    if (messageData.color) {
-      messageDiv.classList.add(messageData.color);
+    if (messagesArray[i].color) {
+      messageDiv.classList.add(messagesArray[i].color);
     }
 
     const user = document.createElement("h6");
@@ -44,38 +42,62 @@ export function displayMessages(messagesArray) {
     const likeCount = document.createElement("span");
     const dislikeCount = document.createElement("span");
 
-    user.textContent = `${messageData.user}:`;
-    message.textContent = messageData.message;
+    user.textContent = `${messagesArray[i].user}:`;
+    message.textContent = messagesArray[i].message;
 
     likeButton.textContent = "👍 ";
-    likeCount.textContent = messageData.like || 0;
+    likeCount.textContent = messagesArray[i].like || 0;
     likeButton.appendChild(likeCount);
 
     dislikeButton.textContent = "👎 ";
-    dislikeCount.textContent = messageData.dislike || 0;
+    dislikeCount.textContent = messagesArray[i].dislike || 0;
     dislikeButton.appendChild(dislikeCount);
 
     likeButton.addEventListener("click", async () => {
-      await updateLikeDislikeFirebase(messageData.id, "like");
+      await updateLikeDislikeFirebase(messagesArray[i].id, "like");
       likeCount.textContent = parseInt(likeCount.textContent) + 1;
     });
 
     dislikeButton.addEventListener("click", async () => {
-      await updateLikeDislikeFirebase(messageData.id, "dislike");
+      await updateLikeDislikeFirebase(messagesArray[i].id, "dislike");
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-   
     anime({
       targets: messageDiv,
       opacity: [0, 1],
       rotate: [-360, 0], 
-      scale: [0.5, 1], 
+      scale: [0.5, 1],   
       duration: 2000,    
       easing: "easeOutElastic(1, .6)",
+    });
+
+    user.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const firebaseID = messagesArray[i].id;
+
+      document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
+
+      if (!messageDiv.querySelector(".ban-button")) {
+        const banButton = document.createElement("button");
+        banButton.className = "ban-button";
+        banButton.innerText = "Ban";
+        messageDiv.append(banButton);
+
+        banButton.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const confirmBan = confirm("Do you want to ban this user?");
+          if (confirmBan) {
+            await patchBanned(firebaseID, true);
+            const users = await fetchMessagesFromFirebase();
+            displayMessages(users);
+          }
+        });
+      }
     });
   }
 }
