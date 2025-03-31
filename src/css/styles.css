@@ -282,3 +282,30 @@ footer .copyright {
     display: none; /* Hide default menu on mobile */
   }
 }
+
+
+body {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .header,
+.dark-mode .footer,
+.dark-mode .nav-link {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.dark-mode .message {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
