@@ -1,11 +1,27 @@
 import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges } from "./newFirebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
+import { initializeSearch, filterMessages } from "./search.js";
+
+// Store all messages globally
+let allMessages = [];
+
+// Function to filter and display messages
+function filterAndDisplayMessages(searchTerm = "") {
+  const filteredMessages = filterMessages(allMessages, searchTerm);
+  displayMessages(filteredMessages);
+}
+
+// Initialize search functionality
+initializeSearch(filterAndDisplayMessages);
 
 console.log("main.js loaded");
 
 listenForMessageChanges((messagesArray) => {
-  displayMessages(messagesArray);
+  allMessages = messagesArray;
+  filterAndDisplayMessages(
+    document.getElementById("searchInput")?.value.toLowerCase() || ""
+  );
 });
 
 const messageForm = document.querySelector("#messageForm");

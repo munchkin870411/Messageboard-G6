@@ -17,15 +17,16 @@
     align-items: center;
   }
   
-  .form-row label {
-    min-width: 100px;       /* makes labels line up */
-    height: 30px;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-  }
+.form-row label,
+.search-container label {
+  min-width: 100px;       /* makes labels line up */
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
 
-.input {
+.input, .search-input {
     background-color: rgb(223, 222, 222);
     width: 100%;              /* full width of container */
     max-width: 100%;         /* optional: limit width */
@@ -118,6 +119,12 @@
 
   .make-note-button {
     font-family: var(--main-font);
+  }
+
+  .search-container {
+    display: flex;
+    margin: 20px 0;
+    max-width: 300px;
   }
 
   @media (max-width: 768px) {
