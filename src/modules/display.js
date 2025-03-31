@@ -14,9 +14,14 @@ function getRotationFromId(id) {
 
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
-  messagesDiv.innerHTML = "";
+
+  const existingMessageIds = new Set(
+    [...messagesDiv.children].map((msg) => msg.id)
+  );
 
   for (let i = 0; i < messagesArray.length; i++) {
+    if (existingMessageIds.has(messagesArray[i].id)) continue;
+
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "postit");
     messageDiv.id = messagesArray[i].id;
@@ -61,8 +66,15 @@ export function displayMessages(messagesArray) {
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-    // Kimiya's feature - I have added an event listener so you get the option to ban a username when clicking on their name
-    // The styling of the button is a bit odd but maybe you can fix it it in the css file - I have given the button the className "ban-button"
+    anime({
+      targets: messageDiv,
+      opacity: [0, 1],
+      rotate: [-360, 0],
+      scale: [0.5, 1],
+      duration: 2000,
+      easing: "easeOutElastic(1, .6)",
+    });
+
     user.addEventListener("click", async (event) => {
       event.preventDefault();
 
@@ -70,7 +82,7 @@ export function displayMessages(messagesArray) {
 
       document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
 
-      if (!user.querySelector(".ban-button")) {
+      if (!messageDiv.querySelector(".ban-button")) {
         const banButton = document.createElement("button");
         banButton.className = "ban-button";
         banButton.innerText = "Ban";
@@ -81,10 +93,7 @@ export function displayMessages(messagesArray) {
           const confirmBan = confirm("Do you want to ban this user?");
           if (confirmBan) {
             await patchBanned(firebaseID, true);
-            const users = fetchMessagesFromFirebase();
-            displayMessages(users);
-          } else {
-            const users = fetchMessagesFromFirebase();
+            const users = await fetchMessagesFromFirebase();
             displayMessages(users);
           }
         });
@@ -113,5 +122,23 @@ document.getElementById("resetButton").addEventListener("click", async () => {
     } catch (error) {
       console.error("Error resetting messages:", error);
     }
+  }
+});
+
+const darkModeToggle = document.getElementById("darkModeToggle");
+
+// Vid sidladdning: Sätt dark mode om det var aktiverat senast
+if (localStorage.getItem("darkMode") === "enabled") {
+  document.body.classList.add("dark-mode");
+}
+
+darkModeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Spara inställningen
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("darkMode", "enabled");
+  } else {
+    localStorage.setItem("darkMode", "disabled");
   }
 });
