@@ -33,7 +33,7 @@
     background-color: #e0e0e0; /* light grey */
     border: none;             /* remove default border */
     outline: none;            /* remove blue focus ring */
-    padding: 8px 12px;        /* space inside */
+    padding: 5px 8px;        /* space inside */
     font-family: inherit;
     font-size: 1rem;
     resize: none;             /* stops textarea from being resized */
@@ -52,6 +52,21 @@
     gap: 2rem;
     align-items: center;
     flex-wrap: wrap;
+  }
+
+  .form-row {
+    display: flex;
+    align-items: flex-start; /* important */
+    gap: px; /* spacing between label and field */
+    margin-bottom: 1rem;
+  }
+  
+  .form-row label {
+    display: block;
+    line-height: 14px; /* match your input height */
+    min-width: 70px;
+    font-family: sans-serif;
+    margin-top: 5px; /* adjust if still slightly low */
   }
 
   
