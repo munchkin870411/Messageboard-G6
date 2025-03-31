@@ -22,10 +22,11 @@
       <h1 class="header-title">post-IT</h1>
     </header>
     
-    <!-- Mobile Header (Hidden by default) -->
     <header class="mobile-header">
       <button class="hamburger" aria-label="Toggle navigation">
-        &#9776;
+        <svg class="hamburger" id="hamburger" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
       </button>
       <nav class="mobile-nav">
         <ul class="mobile-ul">
@@ -40,7 +41,6 @@
       <form id="messageForm">
         <div class="form-wrapper">
           
-          <!-- 🟨 Form Fields -->
           <div class="form-fields">
             <div class="form-row">
               <label for="name">NAME:</label>
@@ -52,7 +52,7 @@
             </div>
           </div>
       
-          <!-- 🎨 Color Picker -->
+          <!-- Color Picker -->
           <div class="form-colors">
             <div class="color-picker">
               <button type="button" class="color-circle" style="--color: var(--postit-red);" data-color="red"></button>
