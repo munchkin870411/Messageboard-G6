@@ -21,7 +21,8 @@
   "devDependencies": {
     "del-cli": "^6.0.0",
     "parcel": "^2.14.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "svgo": "^3.3.2"
   },
   "dependencies": {
     "firebase": "^11.5.0"

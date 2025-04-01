@@ -1,5 +1,5 @@
 import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges, fetchBannedUsersFromFirebase } from "./newFirebase.js";
-import { displayMessages } from "./display.js";
+import { displayMessages, messageDate, current_date } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 import { initializeSearch, updateMessages } from "./search.js";
 
@@ -52,6 +52,10 @@ messageForm.addEventListener("submit", async (event) => {
   const userName = formData.get("name");
   const userMessage = censorBadWords(formData.get("message"));
   const selectedColor = formData.get("color") || "yellow";
+  const messageDate = new Date(Date.now());
+  //const currentDate = new Date(Date.now());
+
+  console.log(messageDate);
 
   try {
    // const messagesArray = await fetchMessagesFromFirebase();
@@ -75,7 +79,7 @@ messageForm.addEventListener("submit", async (event) => {
     const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
     audio.play();
 
-    await addMessageToFirebase(userMessage, userName, selectedColor);
+    await addMessageToFirebase(userMessage, userName, selectedColor, messageDate);
     
     event.target.reset();
     colorInput.value = "yellow";
