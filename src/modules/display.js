@@ -41,10 +41,10 @@ export function displayMessages(messagesArray) {
     anime({
       targets: messageDiv,
       opacity: [0, 1],
-      rotate: [-360, rotation], // ← Ends at consistent rotation per ID
+      rotate: [-45, rotation], // ← Ends at consistent rotation per ID
       scale: [0.5, 1],
-      duration: 2000,
-      easing: "easeOutElastic(1, .6)",
+      duration: 700,
+      easing: "easeOutElastic(1, 0.8)",
     });
 
     if (messagesArray[i].color) {
@@ -94,15 +94,6 @@ setTimeout(() => {
 }, 0);
 
     
-
-    // anime({
-    //   targets: messageDiv,
-    //   opacity: [0, 1],
-    //   rotate: [-360, 0],
-    //   scale: [0.5, 1],
-    //   duration: 2000,
-    //   easing: "easeOutElastic(1, .6)",
-    // });
 
     user.addEventListener("click", async (event) => {
       event.preventDefault();
