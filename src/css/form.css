@@ -26,6 +26,12 @@
   font-family: sans-serif;
 }
 
+.search-container {
+  display: flex;
+  margin: 20px 50;
+  max-width: 300px;
+}
+
 .input, .search-input {
     background-color: rgb(223, 222, 222);
     width: 100%;              /* full width of container */
@@ -121,11 +127,7 @@
     font-family: var(--main-font);
   }
 
-  .search-container {
-    display: flex;
-    margin: 20px 0;
-    max-width: 300px;
-  }
+ 
 
   @media (max-width: 768px) {
     .form-wrapper {

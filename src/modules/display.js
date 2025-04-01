@@ -1,3 +1,5 @@
+import { fitTextToContainer } from './fitText.js';
+
 import {
   updateLikeDislikeFirebase,
   patchBanned,
@@ -35,7 +37,15 @@ export function displayMessages(messagesArray) {
     messageDiv.id = messagesArray[i].id;
 
     const rotation = getRotationFromId(messagesArray[i].id);
-    messageDiv.style.transform = `rotate(${rotation}deg)`;
+
+    anime({
+      targets: messageDiv,
+      opacity: [0, 1],
+      rotate: [-45, rotation], // ← Ends at consistent rotation per ID
+      scale: [0.5, 1],
+      duration: 700,
+      easing: "easeOutElastic(1, 0.8)",
+    });
 
     if (messagesArray[i].color) {
       messageDiv.classList.add(messagesArray[i].color);
@@ -71,17 +81,19 @@ export function displayMessages(messagesArray) {
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
-    messageDiv.append(user, message, likeButton, dislikeButton);
+    const textWrapper = document.createElement("div");
+textWrapper.append(user, message);
+messageDiv.append(textWrapper, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-    anime({
-      targets: messageDiv,
-      opacity: [0, 1],
-      rotate: [-360, 0],
-      scale: [0.5, 1],
-      duration: 2000,
-      easing: "easeOutElastic(1, .6)",
-    });
+// ✅ Then adjust font size *after* it's rendered
+
+
+setTimeout(() => {
+  fitTextToContainer(textWrapper);
+}, 0);
+
+    
 
     user.addEventListener("click", async (event) => {
       event.preventDefault();
@@ -109,6 +121,8 @@ export function displayMessages(messagesArray) {
     });
   }
 }
+
+
 
 document.getElementById("resetButton").addEventListener("click", async () => {
   const confirmation = confirm("Are you sure you want to reset all messages?");
