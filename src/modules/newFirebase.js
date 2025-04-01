@@ -14,7 +14,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export async function addMessageToFirebase(message, user, color) {
+export async function addMessageToFirebase(message, user, color,) {
+    let dateString=new Date(Date.now()).toString()
     const messageData = {
         message,
         user,
@@ -22,6 +23,7 @@ export async function addMessageToFirebase(message, user, color) {
         dislike: 0,
         color,
         banned: false,
+        dateString,
     };
 
     const messagesRef = ref(db, "messages");

@@ -36,6 +36,61 @@ export function displayMessages(messagesArray) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "postit");
     messageDiv.id = messagesArray[i].id;
+console.log(messagesArray);
+
+ 
+    let current_date = new Date();
+    let messageDate = messagesArray[i].dateString;
+
+    if ( messagesArray[i].dateString!=undefined ) {
+      messageDate=new Date(Date.parse(messageDate))
+      //console.log(Date.parse(messageDate));
+    }   else {
+      messageDate=current_date
+    }
+      
+   
+console.log(messageDate);
+const currentDate = new Date();
+const timeDifferenceInMilliseconds = currentDate - messageDate;
+const oneHourInMilliseconds = 3600000; 
+
+if (timeDifferenceInMilliseconds < oneHourInMilliseconds) {
+
+  if (!messageDiv.querySelector('.new-label')) {
+    const newText = document.createElement('p');
+    newText.innerText = "New";
+    newText.classList.add('new-label');
+    messageDiv.style.border = "1px solid red";
+    messageDiv.appendChild(newText);
+  }
+} else {
+
+  const newText = messageDiv.querySelector('.new-label');
+  if (newText) {
+    messageDiv.removeChild(newText);
+    messageDiv.style.border = ""; 
+  }
+}
+
+     
+   /**  let difference = current_date.getTime() - messageDate.getTime();
+    let hoursMilli = 1000 * 60 * 60; 
+    console.log(difference);
+    console.log(current_date);
+    console.log(messagesArray[i]);
+    if (Math.abs(difference) < hoursMilli) {
+   
+      const newText = document.createElement('p');
+      newText.innerText = "New";
+      messageDiv.style.border = "1px";
+      messageDiv.style.borderColor = "red";
+      messageDiv.append(newText);
+    }
+
+    **/
+      
+      
 
     const rotation = getRotationFromId(messagesArray[i].id);
 
