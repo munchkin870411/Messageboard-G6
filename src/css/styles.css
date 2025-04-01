@@ -183,6 +183,23 @@ footer {
   opacity: 0.6;
 }
 
+#resetButton {
+  position: absolute;
+  bottom: 5px;
+  right: 90px; /* Adjust this to move it left of the delete button */
+  padding: 6px 12px;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 11;
+  transition: all 0.2s ease;
+}
+
+#resetButton:hover {
+  transform: scale(1.05);
+}
+
 #searchInput label {
   margin-left: 50px;
 }
