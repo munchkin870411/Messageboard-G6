@@ -35,7 +35,15 @@ export function displayMessages(messagesArray) {
     messageDiv.id = messagesArray[i].id;
 
     const rotation = getRotationFromId(messagesArray[i].id);
-    messageDiv.style.transform = `rotate(${rotation}deg)`;
+
+    anime({
+      targets: messageDiv,
+      opacity: [0, 1],
+      rotate: [-360, rotation], // ← Ends at consistent rotation per ID
+      scale: [0.5, 1],
+      duration: 2000,
+      easing: "easeOutElastic(1, .6)",
+    });
 
     if (messagesArray[i].color) {
       messageDiv.classList.add(messagesArray[i].color);
@@ -74,14 +82,14 @@ export function displayMessages(messagesArray) {
     messageDiv.append(user, message, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-    anime({
-      targets: messageDiv,
-      opacity: [0, 1],
-      rotate: [-360, 0],
-      scale: [0.5, 1],
-      duration: 2000,
-      easing: "easeOutElastic(1, .6)",
-    });
+    // anime({
+    //   targets: messageDiv,
+    //   opacity: [0, 1],
+    //   rotate: [-360, 0],
+    //   scale: [0.5, 1],
+    //   duration: 2000,
+    //   easing: "easeOutElastic(1, .6)",
+    // });
 
     user.addEventListener("click", async (event) => {
       event.preventDefault();
