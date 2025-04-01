@@ -1,4 +1,4 @@
-import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges } from "./newFirebase.js";
+import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFirebase, listenForMessageChanges, fetchBannedUsersFromFirebase } from "./newFirebase.js";
 import { displayMessages } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 import { initializeSearch, updateMessages } from "./search.js";
@@ -54,13 +54,23 @@ messageForm.addEventListener("submit", async (event) => {
   const selectedColor = formData.get("color") || "yellow";
 
   try {
-    const messagesArray = await fetchMessagesFromFirebase();
+   // const messagesArray = await fetchMessagesFromFirebase();
     
-    const existingUser = messagesArray.find(msg => msg.user === userName);
-    if (existingUser && existingUser.banned) {
-      alert("This username is banned, try again.");
-      return;
-    }
+    //const existingUser = messagesArray.find(msg => msg.user === userName);
+    //if (existingUser && existingUser.banned) {
+    //  alert("This username is banned, try again.");
+    //  return;
+   // }
+
+   
+   const bannedUsers = await fetchBannedUsersFromFirebase();
+    
+   
+   if (bannedUsers.some(user => user.user === userName)) {
+     alert("This username is banned, try again.");
+     return;
+   }
+
     
     const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
     audio.play();

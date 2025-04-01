@@ -2,6 +2,7 @@ import {
   updateLikeDislikeFirebase,
   patchBanned,
   fetchMessagesFromFirebase,
+  addBannedUsersToFirebase,
 } from "./newFirebase.js";
 
 function getRotationFromId(id) {
@@ -87,6 +88,7 @@ export function displayMessages(messagesArray) {
       event.preventDefault();
 
       const firebaseID = messagesArray[i].id;
+      const username = messagesArray[i].user;
 
       document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
 
@@ -100,7 +102,8 @@ export function displayMessages(messagesArray) {
           event.preventDefault();
           const confirmBan = confirm("Do you want to ban this user?");
           if (confirmBan) {
-            await patchBanned(firebaseID, true);
+            //await patchBanned(user.textContent, true);
+            await addBannedUsersToFirebase(username, true)
             const users = await fetchMessagesFromFirebase();
             displayMessages(users);
           }
