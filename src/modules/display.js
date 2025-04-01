@@ -87,6 +87,32 @@ textWrapper.append(user, message);
 messageDiv.append(textWrapper, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
+    messageDiv.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      messageDiv.classList.add("drag-delete-hover");
+    });
+    
+    messageDiv.addEventListener("dragleave", () => {
+      messageDiv.classList.remove("drag-delete-hover");
+    });
+    
+    messageDiv.addEventListener("drop", async (e) => {
+      e.preventDefault();
+      const data = e.dataTransfer.getData("text/plain");
+      if (data === "delete") {
+        const id = messagesArray[i].id;
+        messageDiv.remove();
+    
+        try {
+          const deleteURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${id}.json`;
+          await fetch(deleteURL, { method: "DELETE" });
+        } catch (error) {
+          console.error("Failed to delete message:", error);
+        }
+      }
+    
+      messageDiv.classList.remove("drag-delete-hover");
+    });
 // ✅ Then adjust font size *after* it's rendered
 
 
@@ -166,4 +192,17 @@ darkModeToggle.addEventListener("click", () => {
   } else {
     localStorage.setItem("darkMode", "disabled");
   }
+});
+
+const deleteButton = document.getElementById("delete");
+
+deleteButton.setAttribute("draggable", "true");
+
+deleteButton.addEventListener("dragstart", (e) => {
+  e.dataTransfer.setData("text/plain", "delete");
+  e.dataTransfer.effectAllowed = "move";
+
+  const img = new Image();
+  img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y0AzE0AAAAASUVORK5CYII=";
+  e.dataTransfer.setDragImage(img, 0, 0);
 });
