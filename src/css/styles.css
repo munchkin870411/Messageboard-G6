@@ -178,6 +178,11 @@ footer {
   transform: scale(1.1) rotate(2deg);
 }
 
+.drag-delete-hover {
+  outline: 2px dashed red;
+  opacity: 0.6;
+}
+
 #searchInput label {
   margin-left: 50px;
 }

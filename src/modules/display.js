@@ -196,6 +196,13 @@ darkModeToggle.addEventListener("click", () => {
 
 const deleteButton = document.getElementById("delete");
 
+deleteButton.setAttribute("draggable", "true");
+
 deleteButton.addEventListener("dragstart", (e) => {
   e.dataTransfer.setData("text/plain", "delete");
+  e.dataTransfer.effectAllowed = "move";
+
+  const img = new Image();
+  img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y0AzE0AAAAASUVORK5CYII=";
+  e.dataTransfer.setDragImage(img, 0, 0);
 });
