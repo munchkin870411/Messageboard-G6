@@ -61,7 +61,7 @@ if (timeDifferenceInMilliseconds < oneHourInMilliseconds) {
     const newText = document.createElement('p');
     newText.innerText = "New";
     newText.classList.add('new-label');
-    messageDiv.style.border = "1px solid red";
+    messageDiv.classList.add("new-message");
     messageDiv.appendChild(newText);
   }
 } else {
@@ -69,7 +69,7 @@ if (timeDifferenceInMilliseconds < oneHourInMilliseconds) {
   const newText = messageDiv.querySelector('.new-label');
   if (newText) {
     messageDiv.removeChild(newText);
-    messageDiv.style.border = ""; 
+    messageDiv.classList.remove("new-message");
   }
 }
 
