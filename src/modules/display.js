@@ -1,3 +1,5 @@
+import { fitTextToContainer } from './fitText.js';
+
 import {
   updateLikeDislikeFirebase,
   patchBanned,
@@ -79,8 +81,19 @@ export function displayMessages(messagesArray) {
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
-    messageDiv.append(user, message, likeButton, dislikeButton);
+    const textWrapper = document.createElement("div");
+textWrapper.append(user, message);
+messageDiv.append(textWrapper, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
+
+// ✅ Then adjust font size *after* it's rendered
+
+
+setTimeout(() => {
+  fitTextToContainer(textWrapper);
+}, 0);
+
+    
 
     // anime({
     //   targets: messageDiv,
@@ -117,6 +130,8 @@ export function displayMessages(messagesArray) {
     });
   }
 }
+
+
 
 document.getElementById("resetButton").addEventListener("click", async () => {
   const confirmation = confirm("Are you sure you want to reset all messages?");

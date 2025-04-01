@@ -16,6 +16,11 @@
 .postit h4 {
   margin: 30px 8px 0; /* or adjust as needed */
   font-size: 2rem;
+  text-align: center;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 10px;
+  
 }
 
 
@@ -37,13 +42,7 @@
   background-color: var(--postit-aqua-blue);
   margin: 10px;
 }
-.postit h6,
-.postit h4 {
-  text-align: center;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 10px;
-}
+
 
 .postit button {
   position: absolute;
