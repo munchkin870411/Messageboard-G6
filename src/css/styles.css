@@ -327,6 +327,10 @@ footer .copyright {
     display: block;
   }
 
+  footer > *:not(.copyright) {
+    display: none;
+  }
+
   .header {
     padding: 0rem;
   }
