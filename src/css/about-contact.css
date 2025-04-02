@@ -116,7 +116,7 @@
 
 #contactForm {
   width: 100%;
-  max-width: 400px;
+  
   margin: 0 auto;
   padding: 1rem;
 }
@@ -232,8 +232,25 @@ textarea {
     margin-top: 20px;
   }
 
+  footer .copyright {
+    font-size: 0.2rem; 
+    padding-bottom: 4px;
+    text-align: center;
+  }
+
+  .contact-postit {
+    width: 90vw;
+    height: auto;
+    margin-top: 10px; 
+    font-size: 1.2rem;
+  }
+
+  .contact-postit label {
+    font-size: 2rem;
+  }
+
   .about-postit p {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
@@ -243,10 +260,7 @@ textarea {
     padding-left: 20px;
   }
 
-  .contact-postit {
-    width: 90vw;
-    height: auto;
-  }
+  
 
   .mobile-header {
     display: block;

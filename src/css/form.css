@@ -179,7 +179,10 @@
       align-items: flex-start;
       padding: 10px;
     }
-  
+  .color-circle {
+  width: 20px;
+  height: 20px;
+}
     .header-title {
       align-self: flex-start;
       margin-left: 20px;
