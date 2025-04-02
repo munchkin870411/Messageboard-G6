@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messageboard</title>
     <!-- <link rel="stylesheet" href="./css/post-it-design.css" /> Linked all CSS to styles.css -->
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./src/css/styles.css" />
     
-
     <script src="./src/modules/main.js" type="module" defer></script>
   </head>
   <body>
@@ -16,8 +15,8 @@
       <nav class="nav-class">
         <ul class="ul-class">
           <li><a href="index.html" class="nav-link home">Home</a></li>
-          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
-          <li><a href="about.html" class="nav-link about">About</a></li>
+          <li><a href="./src/contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="./src/about.html" class="nav-link about">About</a></li>
         </ul>
       </nav>
       <button id="darkModeToggle">Toggle Dark Mode</button class="dark-mode-toggle">
@@ -33,8 +32,8 @@
       <nav class="mobile-nav">
         <ul class="mobile-ul">
           <li><a href="index.html" class="nav-link home">Home</a></li>
-          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
-          <li><a href="about.html" class="nav-link about">About</a></li>
+          <li><a href="./src/contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="./src/about.html" class="nav-link about">About</a></li>
         </ul>
       </nav>
     </header>
@@ -91,7 +90,7 @@
 
   <footer>
     <button id="delete"draggable="true">
-      <img src="../images/eraser.png" alt="Delete">
+      <img src="./images/eraser.png" alt="Delete">
     </button>
     <p class="copyright">© 2025 post-IT team. All rights reserved.</p>
     <button id="resetButton" class="reset-button">Reset All Messages</button>
