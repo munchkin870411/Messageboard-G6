@@ -359,7 +359,7 @@ body.dark-mode #darkModeToggle {
 .dark-mode .header,
 .dark-mode .footer,
 .dark-mode  {
-  background-color: #1e1e1e;
+  background-color: #000000;
   color: #e0e0e0;
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
 }
