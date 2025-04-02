@@ -327,6 +327,10 @@ footer .copyright {
     display: block;
   }
 
+  footer > *:not(.copyright) {
+    display: none;
+  }
+
   .header {
     padding: 0rem;
   }
@@ -348,10 +352,14 @@ body.dark-mode {
   color: #e0e0e0;
 }
 
+body.dark-mode #darkModeToggle {
+  color: white;
+}
+
 .dark-mode .header,
 .dark-mode .footer,
-.dark-mode .nav-link {
-  background-color: #1e1e1e;
+.dark-mode  {
+  background-color: #000000;
   color: #e0e0e0;
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
 }

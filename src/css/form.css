@@ -12,10 +12,31 @@
   --main-font: 'Reenie Beanie', cursive;
 }
 
+#message {
+  min-height: 10px;
+  max-height: 300px;
+
+  overflow-y: auto;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  width: 100%;
+  border: none;
+  background-color: #e0e0e0;
+  box-sizing: border-box;
+}
+
+#message::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 .form-row {
     display: flex;
     align-items: center;
   }
+
+  
   
 .form-row label,
 .search-container label {
@@ -170,6 +191,5 @@
       width: 100%;
     }
   }
-  
   
   
