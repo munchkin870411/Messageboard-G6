@@ -35,7 +35,7 @@
   color: #333;
   position: relative;
   background-color: var(--postit-aqua-blue);
-  margin: 20px;
+  margin: 10px;
 }
 .postit h6,
 .postit h4 {
