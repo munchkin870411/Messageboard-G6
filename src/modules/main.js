@@ -2,6 +2,7 @@ import { fetchMessagesFromFirebase, addMessageToFirebase, deleteMessageFromFireb
 import { displayMessages, messageDate, current_date } from "./display.js";
 import { censorBadWords } from "./profanity.js";
 import { initializeSearch, updateMessages } from "./search.js";
+import Fireworks from "fireworks-js";
 
 console.log("main.js loaded");
 
@@ -79,8 +80,50 @@ messageForm.addEventListener("submit", async (event) => {
     const audio = new Audio(new URL('/audio/pop-feature.mp3', import.meta.url).href);
     audio.play();
 
-    await addMessageToFirebase(userMessage, userName, selectedColor, messageDate);
+    const messageObj = await addMessageToFirebase(userMessage, userName, selectedColor, messageDate);
     
+    // 🎆 Fireworks logic
+    const container = document.getElementById("messages");
+
+    const fireworksContainer = document.createElement("div");
+    fireworksContainer.id = "fireworksContainer";
+    Object.assign(fireworksContainer.style, {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+      zIndex: "9999",
+    });
+    container.appendChild(fireworksContainer);
+    const fireworks = new Fireworks(fireworksContainer, {
+      autoresize: true,
+      opacity: 0.5,
+      acceleration: 1.05,
+      friction: 0.98,
+      gravity: 1.5,
+      particles: 150,
+      trace: 3,
+      explosion: 10,
+      intensity: 50,
+      flickering: 50,
+      lineWidth: {
+        trace: 2,
+        explosion: 4,
+      },
+      brightness: {
+        min: 50,
+        max:  80,
+        decay: { min: 0.015, max: 0.03 },
+      },
+      hue: { min: 0, max: 360 },
+      delay: { min: 30, max: 60 },
+    });
+
+    fireworks.start();
+    setTimeout(() => fireworks.stop(), 3000);
+
     event.target.reset();
     colorInput.value = "yellow";
   } catch (error) {
