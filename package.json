@@ -25,6 +25,7 @@
     "svgo": "^3.3.2"
   },
   "dependencies": {
-    "firebase": "^11.5.0"
+    "firebase": "^11.5.0",
+    "fireworks-js": "^2.10.8"
   }
 }
