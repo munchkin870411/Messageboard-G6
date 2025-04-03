@@ -156,11 +156,11 @@
       });
     }
   }
-})({"iEGKh":[function(require,module,exports,__globalThis) {
+})({"7fOXd":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 64223;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -16676,6 +16676,6 @@ function filterMessages(messages, searchTerm) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ftRV4":[function(require,module,exports,__globalThis) {
 module.exports = module.bundle.resolve("pop-feature.bdff0fdd.mp3") + "?" + Date.now();
 
-},{}]},["iEGKh","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
+},{}]},["7fOXd","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
 
 //# sourceMappingURL=Messageboard-G6.135449a8.js.map
