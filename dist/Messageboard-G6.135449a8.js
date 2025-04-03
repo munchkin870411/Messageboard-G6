@@ -156,11 +156,11 @@
       });
     }
   }
-})({"cnHwE":[function(require,module,exports,__globalThis) {
+})({"iEGKh":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 49271;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -781,6 +781,18 @@ messageForm.addEventListener("submit", async (event)=>{
         console.error("Error adding message:", error);
     }
 });
+// Emoji Picker by Marcel 
+function toggleEmojiPanel() {
+    const panel = document.getElementById('emojiPanel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+function addEmoji(emoji) {
+    const input = document.getElementById('message');
+    input.value += emoji;
+    input.focus();
+}
+window.toggleEmojiPanel = toggleEmojiPanel;
+window.addEmoji = addEmoji;
 
 },{"./newFirebase.js":"3pLcT","./display.js":"lA8tp","./profanity.js":"6NBfr","./search.js":"5cAn1","fireworks-js":"9qMWh","8cf284e6b8936bcb":"ftRV4","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3pLcT":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -16169,15 +16181,6 @@ document.getElementById("resetButton").addEventListener("click", async ()=>{
         console.error("Error resetting messages:", error);
     }
 });
-const darkModeToggle = document.getElementById("darkModeToggle");
-// Vid sidladdning: Sätt dark mode om det var aktiverat senast
-if (localStorage.getItem("darkMode") === "enabled") document.body.classList.add("dark-mode");
-darkModeToggle.addEventListener("click", ()=>{
-    document.body.classList.toggle("dark-mode");
-    // Spara inställningen
-    if (document.body.classList.contains("dark-mode")) localStorage.setItem("darkMode", "enabled");
-    else localStorage.setItem("darkMode", "disabled");
-});
 const deleteButton = document.getElementById("delete");
 deleteButton.setAttribute("draggable", "true");
 deleteButton.addEventListener("dragstart", (e)=>{
@@ -17147,6 +17150,6 @@ class T {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ftRV4":[function(require,module,exports,__globalThis) {
 module.exports = module.bundle.resolve("pop-feature.bdff0fdd.mp3") + "?" + Date.now();
 
-},{}]},["cnHwE","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
+},{}]},["iEGKh","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
 
 //# sourceMappingURL=Messageboard-G6.135449a8.js.map

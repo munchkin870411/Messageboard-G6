@@ -156,7 +156,7 @@
       });
     }
   }
-})({"cyV9F":[function(require,module,exports,__globalThis) {
+})({"f3PLT":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -164,7 +164,7 @@ var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "05cc0f546bee3aed";
+module.bundle.HMR_BUNDLE_ID = "57d00eed9cbabe74";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_SERVER_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -661,45 +661,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"6IS7M":[function(require,module,exports,__globalThis) {
-// contact-aboutus.js
-console.log("contact-aboutus.js loaded");
-// Detect which page we're on by checking the URL or the body class
-const page = window.location.pathname.includes('contact') ? 'contact' : window.location.pathname.includes('about') ? 'about' : null;
-if (page) console.log(`${page} page script is running`);
-// Hamburger Menu functionality (common for both pages)
-const hamburger = document.querySelector('.hamburger');
-const mobileHeader = document.querySelector('.mobile-header');
-const mobileNav = document.querySelector('.mobile-nav');
-if (hamburger && mobileHeader && mobileNav) {
-    // Toggle the 'active' class on hamburger click to open/close the menu
-    hamburger.addEventListener('click', ()=>{
-        mobileHeader.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-    });
-    // Close the menu if the user clicks anywhere outside of it
-    document.addEventListener('click', (event)=>{
-        if (!mobileHeader.contains(event.target) && !hamburger.contains(event.target)) {
-            mobileNav.classList.remove('active');
-            mobileHeader.classList.remove('active');
-        }
-    });
-}
-// Page-specific logic
-if (page === 'contact') {
-    // Contact page specific logic
-    console.log("This is the Contact page.");
-    // Add specific functionality for the Contact page (e.g., form handling, etc.)
-    const contactForm = document.querySelector("#contactForm");
-    if (contactForm) contactForm.addEventListener("submit", (event)=>{
-        event.preventDefault();
-        // Handle contact form submission here
-        alert("Contact form submitted!");
-    });
-}
-if (page === 'about') // About page specific logic
-console.log("This is the About page.");
+},{}],"91wBa":[function(require,module,exports,__globalThis) {
+const darkModeToggle = document.getElementById("darkModeToggle");
+// Vid sidladdning: Sätt dark mode om det var aktiverat senast
+if (localStorage.getItem("darkMode") === "enabled") document.body.classList.add("dark-mode");
+darkModeToggle.addEventListener("click", ()=>{
+    document.body.classList.toggle("dark-mode");
+    // Spara inställningen
+    if (document.body.classList.contains("dark-mode")) localStorage.setItem("darkMode", "enabled");
+    else localStorage.setItem("darkMode", "disabled");
+});
 
-},{}]},["cyV9F","6IS7M"], "6IS7M", "parcelRequire5af6")
+},{}]},["f3PLT","91wBa"], "91wBa", "parcelRequire5af6")
 
-//# sourceMappingURL=contact.6bee3aed.js.map
+//# sourceMappingURL=Messageboard-G6.9cbabe74.js.map

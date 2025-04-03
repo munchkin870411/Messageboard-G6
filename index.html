@@ -52,7 +52,42 @@
               <textarea class="input" id="message" name="message" maxlength="100" required></textarea>
             </div>
           </div>
-      
+
+              <!--Emoji Picker by Marcel-->
+              <div class="form-row" style="margin-top: 10px;">
+                <button type="button" onclick="toggleEmojiPanel()">Emojis</button>
+              </div>
+              
+              <div class="form-row" id="emojiPanel" style="
+              display: none;
+              margin-top: 5px;
+              display: grid;
+              grid-template-columns: repeat(5, auto);
+              gap: 8px;
+              max-width: 220px;">
+                <span onclick="addEmoji('😀')">😀</span>
+                <span onclick="addEmoji('😂')">😂</span>
+                <span onclick="addEmoji('😍')">😍</span>
+                <span onclick="addEmoji('😎')">😎</span>
+                <span onclick="addEmoji('🔥')">🔥</span>
+                <span onclick="addEmoji('🎉')">🎉</span>
+                <span onclick="addEmoji('😇')">😇</span>
+                <span onclick="addEmoji('🤯')">🤯</span>
+                <span onclick="addEmoji('🥵')">🥵</span>
+                <span onclick="addEmoji('🥶')">🥶</span>
+                <span onclick="addEmoji('🫶')">🫶</span>
+                <span onclick="addEmoji('🤝')">🤝</span>
+                <span onclick="addEmoji('💡')">💡</span>
+                <span onclick="addEmoji('🚀')">🚀</span>
+                <span onclick="addEmoji('🎯')">🎯</span>
+                <span onclick="addEmoji('🧃')">🧃</span>
+                <span onclick="addEmoji('📌')">📌</span>
+                <span onclick="addEmoji('🧠')">🧠</span>
+                <span onclick="addEmoji('🌈')">🌈</span>
+                <span onclick="addEmoji('☕')">☕</span>
+                <span onclick="addEmoji('🧁')">🧁</span>
+              </div>
+          
           <!-- Color Picker -->
           <div class="form-colors">
             <div class="color-picker">

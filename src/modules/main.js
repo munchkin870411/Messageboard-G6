@@ -130,3 +130,20 @@ messageForm.addEventListener("submit", async (event) => {
     console.error("Error adding message:", error);
   }
 });
+
+
+// Emoji Picker by Marcel 
+function toggleEmojiPanel() {
+  const panel = document.getElementById('emojiPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function addEmoji(emoji) {
+  const input = document.getElementById('message');
+  input.value += emoji;
+  input.focus();
+}
+
+window.toggleEmojiPanel = toggleEmojiPanel;
+window.addEmoji = addEmoji;
+
