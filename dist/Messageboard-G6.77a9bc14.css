@@ -536,6 +536,15 @@
   }
 }
 
+#fireworksContainer {
+  z-index: 2147483647;
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 20%;
+}
+
 :root {
   --postit-sky-blue: #80caff;
   --postit-green: #85e0a3;

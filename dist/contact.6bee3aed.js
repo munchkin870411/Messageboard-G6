@@ -156,10 +156,12 @@
       });
     }
   }
+})({"hIc6J":[function(require,module,exports,__globalThis) {
 })({"kgzi2":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
+var HMR_SERVER_PORT = 64553;
 var HMR_SERVER_PORT = 64223;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
@@ -700,6 +702,7 @@ if (page === 'contact') {
 if (page === 'about') // About page specific logic
 console.log("This is the About page.");
 
+},{}]},["hIc6J","6IS7M"], "6IS7M", "parcelRequire5af6")
 },{}]},["kgzi2","6IS7M"], "6IS7M", "parcelRequire5af6")
 
 //# sourceMappingURL=contact.6bee3aed.js.map
