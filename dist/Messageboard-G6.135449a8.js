@@ -156,11 +156,11 @@
       });
     }
   }
-})({"IUF3O":[function(require,module,exports,__globalThis) {
+})({"cnHwE":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 64553;
+var HMR_SERVER_PORT = 49271;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -782,7 +782,7 @@ messageForm.addEventListener("submit", async (event)=>{
     }
 });
 
-},{"./newFirebase.js":"3pLcT","./display.js":"lA8tp","./profanity.js":"6NBfr","./search.js":"5cAn1","8cf284e6b8936bcb":"ftRV4","fireworks-js":"9qMWh","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3pLcT":[function(require,module,exports,__globalThis) {
+},{"./newFirebase.js":"3pLcT","./display.js":"lA8tp","./profanity.js":"6NBfr","./search.js":"5cAn1","fireworks-js":"9qMWh","8cf284e6b8936bcb":"ftRV4","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3pLcT":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "addMessageToFirebase", ()=>addMessageToFirebase);
@@ -16724,10 +16724,7 @@ function filterMessages(messages, searchTerm) {
     return messages.filter((message)=>message.user.toLowerCase().includes(searchTerm) || message.message.toLowerCase().includes(searchTerm));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ftRV4":[function(require,module,exports,__globalThis) {
-module.exports = module.bundle.resolve("pop-feature.bdff0fdd.mp3") + "?" + Date.now();
-
-},{}],"9qMWh":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9qMWh":[function(require,module,exports,__globalThis) {
 /**
  * name: fireworks-js
  * version: 2.10.8
@@ -17147,6 +17144,9 @@ class T {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["IUF3O","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ftRV4":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("pop-feature.bdff0fdd.mp3") + "?" + Date.now();
+
+},{}]},["cnHwE","7h78P"], "7h78P", "parcelRequire5af6", "./", "/")
 
 //# sourceMappingURL=Messageboard-G6.135449a8.js.map
