@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messageboard</title>
     <!-- <link rel="stylesheet" href="./css/post-it-design.css" /> Linked all CSS to styles.css -->
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./src/css/styles.css" />
     
-
-    <script src="./modules/main.js" type="module" defer></script>
+    <script src="./src/modules/main.js" type="module" defer></script>
   </head>
   <body>
 
@@ -16,8 +15,8 @@
       <nav class="nav-class">
         <ul class="ul-class">
           <li><a href="index.html" class="nav-link home">Home</a></li>
-          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
-          <li><a href="about.html" class="nav-link about">About</a></li>
+          <li><a href="./src/contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="./src/about.html" class="nav-link about">About</a></li>
         </ul>
       </nav>
       <button id="darkModeToggle">Toggle Dark Mode</button class="dark-mode-toggle">
@@ -33,24 +32,23 @@
       <nav class="mobile-nav">
         <ul class="mobile-ul">
           <li><a href="index.html" class="nav-link home">Home</a></li>
-          <li><a href="contact.html" class="nav-link contact">Contact</a></li>
-          <li><a href="about.html" class="nav-link about">About</a></li>
+          <li><a href="./src/contact.html" class="nav-link contact">Contact</a></li>
+          <li><a href="./src/about.html" class="nav-link about">About</a></li>
         </ul>
       </nav>
     </header>
     <main>
-   
       <form id="messageForm">
         <div class="form-wrapper">
           
           <div class="form-fields">
             <div class="form-row">
               <label for="name">NAME:</label>
-              <input class="input" type="text" id="name" name="name" required />
+              <input class="input" type="text" id="name" name="name" maxlength="10" required/>
             </div>
             <div class="form-row">
               <label for="message">NOTE:</label>
-              <textarea class="input" id="message" name="message" required></textarea>
+              <textarea class="input" id="message" name="message" maxlength="100" required></textarea>
             </div>
           </div>
       
@@ -77,20 +75,35 @@
             <input type="hidden" id="noteColor" name="color" value="yellow" />
             <button id="make-note-button" class="submit-button" type="submit">Make Note!</button>
           </div>
-          <button id="resetButton" class="reset-button">Reset All Messages</button>
+          
 
         </div>
       </form>
     <br><br>
+
+   
+    
     <div id="messages"></div>
     
   </main>
 
   <footer>
-    <button id="delete">
-      <img src="../images/eraser.png" alt="Delete">
+    <button id="delete"draggable="true">
+      <img src="./images/eraser.png" alt="Delete">
     </button>
     <p class="copyright">© 2025 post-IT team. All rights reserved.</p>
+    <button id="resetButton" class="reset-button">Reset All Messages</button>
+    <div class="search-container">
+      <label for="searchInput">SEARCH:</label>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="" 
+        
+        class="search-input"
+      />
+      <!-- optional placeholer: Search by user or content... -->
+    </div>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 

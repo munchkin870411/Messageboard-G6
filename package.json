@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Versionshantering Slutprojekt Grupp 6",
   "scripts": {
-    "dev": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --dist-dir docs --public-url ./",
+    "dev": "parcel ./index.html",
+    "build": "parcel build ./index.html --dist-dir docs --public-url ./",
     "clean": "del-cli ./.parcel-cache ./docs ./dist"
   },
   "repository": {
@@ -21,9 +21,11 @@
   "devDependencies": {
     "del-cli": "^6.0.0",
     "parcel": "^2.14.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "svgo": "^3.3.2"
   },
   "dependencies": {
-    "firebase": "^11.5.0"
+    "firebase": "^11.5.0",
+    "fireworks-js": "^2.10.8"
   }
 }

@@ -1,7 +1,10 @@
+import { fitTextToContainer } from './fitText.js';
+
 import {
   updateLikeDislikeFirebase,
   patchBanned,
   fetchMessagesFromFirebase,
+  addBannedUsersToFirebase,
 } from "./newFirebase.js";
 
 function getRotationFromId(id) {
@@ -15,6 +18,14 @@ function getRotationFromId(id) {
 export function displayMessages(messagesArray) {
   const messagesDiv = document.querySelector("#messages");
 
+  const filteredMessageIds = new Set(messagesArray.map((msg) => msg.id));
+
+  [...messagesDiv.children].forEach((child) => {
+    if (!filteredMessageIds.has(child.id)) {
+      child.remove();
+    }
+  });
+
   const existingMessageIds = new Set(
     [...messagesDiv.children].map((msg) => msg.id)
   );
@@ -25,9 +36,72 @@ export function displayMessages(messagesArray) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "postit");
     messageDiv.id = messagesArray[i].id;
+console.log(messagesArray);
+
+ 
+    let current_date = new Date();
+    let messageDate = messagesArray[i].dateString;
+
+    if ( messagesArray[i].dateString!=undefined ) {
+      messageDate=new Date(Date.parse(messageDate))
+      //console.log(Date.parse(messageDate));
+    }   else {
+      messageDate=current_date
+    }
+      
+   
+console.log(messageDate);
+const currentDate = new Date();
+const timeDifferenceInMilliseconds = currentDate - messageDate;
+const oneHourInMilliseconds = 3600000; 
+
+if (timeDifferenceInMilliseconds < oneHourInMilliseconds) {
+
+  if (!messageDiv.querySelector('.new-label')) {
+    const newText = document.createElement('p');
+    newText.innerText = "New";
+    newText.classList.add('new-label');
+    messageDiv.classList.add("new-message");
+    messageDiv.appendChild(newText);
+  }
+} else {
+
+  const newText = messageDiv.querySelector('.new-label');
+  if (newText) {
+    messageDiv.removeChild(newText);
+    messageDiv.classList.remove("new-message");
+  }
+}
+
+     
+   /**  let difference = current_date.getTime() - messageDate.getTime();
+    let hoursMilli = 1000 * 60 * 60; 
+    console.log(difference);
+    console.log(current_date);
+    console.log(messagesArray[i]);
+    if (Math.abs(difference) < hoursMilli) {
+   
+      const newText = document.createElement('p');
+      newText.innerText = "New";
+      messageDiv.style.border = "1px";
+      messageDiv.style.borderColor = "red";
+      messageDiv.append(newText);
+    }
+
+    **/
+      
+      
 
     const rotation = getRotationFromId(messagesArray[i].id);
-    messageDiv.style.transform = `rotate(${rotation}deg)`;
+
+    anime({
+      targets: messageDiv,
+      opacity: [0, 1],
+      rotate: [-45, rotation], // ← Ends at consistent rotation per ID
+      scale: [0.5, 1],
+      duration: 700,
+      easing: "easeOutElastic(1, 0.8)",
+    });
 
     if (messagesArray[i].color) {
       messageDiv.classList.add(messagesArray[i].color);
@@ -63,22 +137,51 @@ export function displayMessages(messagesArray) {
       dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
     });
 
-    messageDiv.append(user, message, likeButton, dislikeButton);
+    const textWrapper = document.createElement("div");
+textWrapper.append(user, message);
+messageDiv.append(textWrapper, likeButton, dislikeButton);
     messagesDiv.append(messageDiv);
 
-    anime({
-      targets: messageDiv,
-      opacity: [0, 1],
-      rotate: [-360, 0],
-      scale: [0.5, 1],
-      duration: 2000,
-      easing: "easeOutElastic(1, .6)",
+    messageDiv.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      messageDiv.classList.add("drag-delete-hover");
     });
+    
+    messageDiv.addEventListener("dragleave", () => {
+      messageDiv.classList.remove("drag-delete-hover");
+    });
+    
+    messageDiv.addEventListener("drop", async (e) => {
+      e.preventDefault();
+      const data = e.dataTransfer.getData("text/plain");
+      if (data === "delete") {
+        const id = messagesArray[i].id;
+        messageDiv.remove();
+    
+        try {
+          const deleteURL = `https://messageboard-g6-default-rtdb.europe-west1.firebasedatabase.app/messages/${id}.json`;
+          await fetch(deleteURL, { method: "DELETE" });
+        } catch (error) {
+          console.error("Failed to delete message:", error);
+        }
+      }
+    
+      messageDiv.classList.remove("drag-delete-hover");
+    });
+// ✅ Then adjust font size *after* it's rendered
+
+
+setTimeout(() => {
+  fitTextToContainer(textWrapper);
+}, 0);
+
+    
 
     user.addEventListener("click", async (event) => {
       event.preventDefault();
 
       const firebaseID = messagesArray[i].id;
+      const username = messagesArray[i].user;
 
       document.querySelectorAll(".ban-button").forEach((btn) => btn.remove());
 
@@ -92,7 +195,8 @@ export function displayMessages(messagesArray) {
           event.preventDefault();
           const confirmBan = confirm("Do you want to ban this user?");
           if (confirmBan) {
-            await patchBanned(firebaseID, true);
+            //await patchBanned(user.textContent, true);
+            await addBannedUsersToFirebase(username, true)
             const users = await fetchMessagesFromFirebase();
             displayMessages(users);
           }
@@ -101,6 +205,8 @@ export function displayMessages(messagesArray) {
     });
   }
 }
+
+
 
 document.getElementById("resetButton").addEventListener("click", async () => {
   const confirmation = confirm("Are you sure you want to reset all messages?");
@@ -141,4 +247,17 @@ darkModeToggle.addEventListener("click", () => {
   } else {
     localStorage.setItem("darkMode", "disabled");
   }
+});
+
+const deleteButton = document.getElementById("delete");
+
+deleteButton.setAttribute("draggable", "true");
+
+deleteButton.addEventListener("dragstart", (e) => {
+  e.dataTransfer.setData("text/plain", "delete");
+  e.dataTransfer.effectAllowed = "move";
+
+  const img = new Image();
+  img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y0AzE0AAAAASUVORK5CYII=";
+  e.dataTransfer.setDragImage(img, 0, 0);
 });
